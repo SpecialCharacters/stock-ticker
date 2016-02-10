@@ -1,3 +1,4 @@
 Date/Time						What happened
 
+Feb 9, 4:38pm					Added .gitignore
 Feb 9, 4:16pm					Initial commit
