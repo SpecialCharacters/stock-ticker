@@ -8,8 +8,9 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{
+            var_dump($this->players->getDatabaseData());
             //$this->load->view('welcome_message');
-            $this->data['pagebody'] = 'index';
+            $this->data['pagebody'] = 'index';//new DBQuery().getDatabaseData();//'index';
             $this->data['pagenavigation'] = 'navigation';
             $this->render();
 	}
