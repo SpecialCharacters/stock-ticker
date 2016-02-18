@@ -19,6 +19,7 @@
 	</tr>
 </table>
 <table id="rightTable" text-align="left">
+        
 	<tr>
 		<td><h3>Name</h3></td><td><h3>Equity</h3></td><td><h3>Cash</h3></td>
 	</tr>
