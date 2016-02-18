@@ -38,6 +38,6 @@ class Application extends CI_Controller {
         $this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
         $this->data['navigation'] = $this->parser->parse($this->data['pagenavigation'], $this->data, true);
         $this->data['data'] = &$this->data;
-        $this->parser->parse('template', $this->data);
+        $this->parser->parse('_template', $this->data);
     }
 }
