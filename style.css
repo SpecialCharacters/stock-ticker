@@ -1,0 +1,101 @@
+body{
+	background-color:lightblue;
+	color:#333333;
+	font-family:'arial';
+}
+
+h1{
+	color:#CC181E;
+}
+
+a{
+	text-decoration:none;
+}
+
+a:link,a:visited{
+	color:#1B7FCC;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+a:active{
+	color:#0B6FBC;
+	background-color:#EEEEEE;
+}
+
+#header{
+
+}
+
+#navigation{
+	
+}
+
+#navigation ul{
+	list-style-type:none;
+	padding-left:20px;
+}
+
+#navigation li{
+	padding:5px 5px 5px 25px;
+	width:150px;
+}
+
+#navigation li:hover,#currentpage,#navigation a:active{
+	background-color:navy;
+	color:#FFFFFF;
+}
+
+#navigation a{
+	color:inherit;
+	text-decoration:none;
+}
+
+#content{
+	border:1px solid #E2E2E2;
+	padding:0px 20px 0px 20px;
+	margin-left:208px;
+	margin-bottom:10px;
+	position:absolute;
+	left:10px;
+	right:10px;
+	top:81px;
+	bottom:10px;
+}
+
+#content p{
+	margin-left:20px;
+}
+
+#content dl{
+	margin-left:50px;
+}
+
+#rightTable {
+	width:50%;
+}
+
+#leftTable {
+	width:50%;
+	float:left;
+}
+
+#titleTable {
+	width:100%;
+}
+
+h1 {
+    color: navy;
+    text-shadow: 1px 1px 1px #ccc;
+    margin-left: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif;
+}
+
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
