@@ -8,8 +8,17 @@ class Portfolio extends Application {
 	public function index($name = null)
 	{ 
             //$name is the name of the user's data being passed in
-            $this->data['pagebody'] = 'profile';//new DBQuery().getDatabaseData();//'index';
+            $playerNames = ['Jaegar', 'Carson', 'George'];
+            $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(2);
+            $this->data['dropdowndata'] = $this->createDropDown($playerNames, $name);
+            
+            $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Amount']);
+            //$this->data['leftTableColumns'] = $this->jaegarsLeftTableQueryFunction();
+            
+            $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Timestamp']);
+            //$this->data['rightTableQuery'] = $this->jaegarsRightTableQueryFunction();
+            
             $this->render();
 	}
 }

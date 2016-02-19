@@ -7,12 +7,18 @@ class Stock extends Application {
 	 */
 	public function index($name = null)
 	{ 
-            
-            $this->data['stockname'] = $name;
-            $this->data['stockPriceHistory'] = $this->parseQuery($this->movement->getMovementsStock($name));
-            //$this->data['stocksHistoryQuery'];
-            $this->data['pagebody'] = 'stocks';
+            $stockItemNames = ['A', 'B', 'C', 'Oil'];
+            $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(3);
+            $this->data['dropdowndata'] = $this->createDropDown($stockItemNames, $name);
+            $this->data['stockname'] = $name;
+            
+            $this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Up/Down']);
+            $this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($name));
+            
+            $this->data['rightTableColumns'] = $this->createTableColumns(['Player', 'Amount', 'Timestamp']);
+            //$this->data['rightTableQuery'] = $this->jaegarsRightTableQueryFunction();
+            
             $this->render();
 	}
 }
