@@ -9,6 +9,7 @@
  * @copyright           2010-2015, James L. Parry
  * ------------------------------------------------------------------------
  */
+
 class Application extends CI_Controller {
 
     protected $data = array();      // parameters for view components
@@ -84,18 +85,23 @@ class Application extends CI_Controller {
     //To be removed and replaced with below version.
     protected function createNavigation($page) {
         $counter = 1;
-        $result = '
-        <div id="loginDiv">
-            <form id="loginForm" action="loginAttempt.php">
+        $result = '<div id="loginDiv">';
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $result .= '<form id="loginForm" action="loginAttempt.php">
+                Logged in as '.$session_data['username'].'<br>
+                <input type="submit" value="Loggout">
+            </form>';  
+        } else {
+            $result .= '<form id="loginForm" action="loginAttempt.php">
                 Username:<br>
                 <input type="text" name="firstname"><br>
                 Password:<br>
                 <input type="password" name="password"><br>
                 <input type="submit" value="Submit">
-            </form>
-        </div>
-        <div id="pageSelection">
-            <ul>';
+            </form>';
+        }
+       $result .= '</div><div id="pageSelection"><ul>';
         
         $result .= '
                 <li><a href="/">Homepage</a></li>
