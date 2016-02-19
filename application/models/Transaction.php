@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Transactions extends MY_Model {
+class Transaction extends MY_Model {
     
     function __construct() {
         parent::__construct('transactions','transactionID');
