@@ -81,8 +81,6 @@ class Application extends CI_Controller {
     
     //To be removed and replaced with below version.
     protected function createNavigation($page) {
-        $result = '';
-        
         $result = '
         <form id="loginForm" action="loginAttempt.php">
             First name:<br>
@@ -92,9 +90,9 @@ class Application extends CI_Controller {
             <input type="submit" value="Submit">
         </form>
         
-        <li><a href="welcome">Homepage</a></li>
-        <li><a href="profile">Profile</a></li>
-        <li><a href="stock">Stock</a></li>';
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/stock">Stock</a></li>';
         
         return $result;
     }
