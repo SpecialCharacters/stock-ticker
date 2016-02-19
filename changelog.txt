@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 2:52am					Added DB queries for stock details
 Feb 19, 2:11am					Added DB queries and linking for main page
 Feb 19, 1:28am                  Updated UI/site look
 Feb 18, 10:00pm                 Added models
