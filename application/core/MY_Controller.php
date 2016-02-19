@@ -112,4 +112,23 @@ class Application extends CI_Controller {
         
         return $result;
     }*/
+    
+    function createDropDown($dropdowndata, $pagename) {
+        $URI = "$_SERVER[REQUEST_URI]";
+        if (strlen($URI) > 1) {
+            $arr = explode('/', $URI);
+            $URI = $arr[0].'/'.$arr[1];
+        }
+        $URI.='/';
+        $result = '<select onchange="window.location=\''."http://$_SERVER[HTTP_HOST]$URI".'\' + this.value;">';
+        foreach($dropdowndata as $item) {
+            $result .= '<option value="'.$item.'"';
+            if ($item==$pagename) {
+                $result .= ' selected="selected"';
+            }
+            $result .= '>'.$item.'</option>';
+        }
+        $result .= '</select>';
+        return $result;
+    }
 }
