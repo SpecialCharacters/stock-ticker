@@ -43,8 +43,9 @@ class Application extends CI_Controller {
     function parseQuery($queryData) {
             $res = '';
             
-            if ($queryData == NULL)
+            if ($queryData == NULL) {
                 return '';
+            }
             
             foreach($queryData as $queryIndex) {
                 $res .= '<tr>';
@@ -60,15 +61,16 @@ class Application extends CI_Controller {
             $res = '';
             $first = TRUE;
             
-            if ($queryData == NULL)
+            if ($queryData == NULL) {
                 return '';
+            }
             
             foreach($queryData as $queryIndex) {
                 $res .= '<tr>';
                 $first = TRUE;
                 foreach($queryIndex as $singular) {
                     if ($first) {
-                        $res .= '<td><a href="/stock/' . $singular . '">' . $singular . '</a></td>';
+                        $res .= '<td><a id="clickable" href="/stock/' . $singular . '">' . $singular . '</a></td>';
                         $first = FALSE;
                     } else {
                         $res .= '<td>' . $singular . '</td>';
@@ -81,18 +83,26 @@ class Application extends CI_Controller {
     
     //To be removed and replaced with below version.
     protected function createNavigation($page) {
+        $counter = 1;
         $result = '
-        <form id="loginForm" action="loginAttempt.php">
-            First name:<br>
-            <input type="text" name="firstname"><br>
-            Password name:<br>
-            <input type="password" name="password"><br>
-            <input type="submit" value="Submit">
-        </form>
+        <div id="loginDiv">
+            <form id="loginForm" action="loginAttempt.php">
+                Username:<br>
+                <input type="text" name="firstname"><br>
+                Password:<br>
+                <input type="password" name="password"><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="pageSelection">
+            <ul>';
         
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/stock">Stock</a></li>';
+        $result .= '
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/stock">Stock</a></li>';
+                
+        $result .= '</ul></div>';
         
         return $result;
     }
