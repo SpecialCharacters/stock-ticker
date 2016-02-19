@@ -8,15 +8,26 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Login extends Application {
-    
     public function index(){
-        setNavBarLogin($username,$password);
+    }
+    
+    public function loginAttempt($username = 'hi', $password = 'lol') {
+        if (isset($_GET['username']) && isset($_GET['password'])) {
+            if(!$this->setNavBarLogin($_GET['username'],$_GET['password'])) {
+                echo '<script>alert("Invalid username and password combination.")</script>';
+                redirect('welcome', 'refresh');
+            }
+        } else {
+            $this->setNavBarLogout();
+        }
     }
     
     public function queryLogin($username, $password){
-            
-        $this -> db -> select('username, password');
+
+        $this -> db -> select('username, firstname,password');
+
         $this -> db -> from('players');
         $this -> db -> where('username', $username);
         $this -> db -> where('password', $password);
@@ -24,7 +35,8 @@ class Login extends Application {
         $result = $this-> db ->get();
 
         if($result -> num_rows() == 1){
-            return true;
+
+            return $result->result();
         }
         else{
             return false;
@@ -33,7 +45,8 @@ class Login extends Application {
         
     public function setNavBarLogin($username,$password){
 
-        $result = $this->user->queryLogin($username,$password);
+        $result = $this->queryLogin($username,$password);
+
 
         if($result)
         {
@@ -47,22 +60,20 @@ class Login extends Application {
                 );
             }
             $this->session->set_userdata('logged_in', $sess_array);
-            redirect('portfolio', 'refresh'); //just to test if it works
+
+            redirect('welcome', 'refresh'); //just to test if it works
+
             return true;
         }else{
             //how ever we want to set the navbar if they type in a wrong password
             //$this->form_validation->set_message('check database', 'invalid password');
             return false;
         }
-
     }
-        
     public function setNavBarLogout(){
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        redirect('home', 'refresh');
     }
-
 }
 
 
