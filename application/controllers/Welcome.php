@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends Application {
@@ -21,5 +22,5 @@ class Welcome extends Application {
 			
             
             $this->render();
-	}
+	}        
 }
