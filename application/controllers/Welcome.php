@@ -8,20 +8,10 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{ 
-            //$this->data['playersQuery'] = $this->queryPlayers();
+            $this->data['playersQuery'] = $this->parseQuery($this->players->getPlayers());
+            $this->data['stocksQuery'] = $this->parseQueryClickable($this->stocks->getStocks());
             $this->data['pagebody'] = 'index';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(1);//$this->navigation(1);
             $this->render();
 	}
-        
-
-        /*
-        public function queryPlayers() {
-            $data = $this->players->getDatabaseData();
-            $res = '';
-            foreach($data as $player) {
-                $res .= '<tr>  <td>' . $player["Player"] . '</td><td>' . $player["Cash"] . '</td></tr>';
-            }
-            return $res;
-        }*/
 }

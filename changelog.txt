@@ -1,7 +1,11 @@
 Date/Time						What happened
 
-Feb 19, 1:28am                                  Updated UI/site look
-Feb 18, 10:00pm                                 Added models
+Feb 19, 3:33am					Added DB queries for calculating equity
+Feb 19, 3:19am					Minor bugfixes
+Feb 19, 2:52am					Added DB queries for stock details
+Feb 19, 2:11am					Added DB queries and linking for main page
+Feb 19, 1:28am					Updated UI/site look
+Feb 18, 10:00pm					Added models
 Feb 18, 9:40pm					Added password column to players
 Feb 18, 8:04pm					Fixed broken links
 Feb 18, 7:59pm					Finished routing

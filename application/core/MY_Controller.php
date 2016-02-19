@@ -40,6 +40,44 @@ class Application extends CI_Controller {
         $this->parser->parse('_template', $this->data);
     }
     
+    function parseQuery($queryData) {
+            $res = '';
+            
+            if ($queryData == NULL)
+                return '';
+            
+            foreach($queryData as $queryIndex) {
+                $res .= '<tr>';
+                foreach($queryIndex as $singular) {
+                    $res .= '<td>' . $singular . '</td>';
+                }
+                $res .= '</tr>';
+            }
+            return $res;
+    }
+    
+        function parseQueryClickable($queryData) {
+            $res = '';
+            $first = TRUE;
+            
+            if ($queryData == NULL)
+                return '';
+            
+            foreach($queryData as $queryIndex) {
+                $res .= '<tr>';
+                $first = TRUE;
+                foreach($queryIndex as $singular) {
+                    if ($first) {
+                        $res .= '<td><a href="/stock/' . $singular . '">' . $singular . '</a></td>';
+                        $first = FALSE;
+                    } else {
+                        $res .= '<td>' . $singular . '</td>';
+                    }
+                }
+                $res .= '</a>';
+            }
+            return $res;
+    }
     
     //To be removed and replaced with below version.
     protected function createNavigation($page) {
