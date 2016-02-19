@@ -113,7 +113,7 @@ class Application extends CI_Controller {
         return $result;
     }*/
     
-    function createDropDown($dropdowndata, $pagename) {
+    function createDropDown($dropdowndata = null, $pagename = null) {
         $URI = "$_SERVER[REQUEST_URI]";
         if (strlen($URI) > 1) {
             $arr = explode('/', $URI);
@@ -129,6 +129,15 @@ class Application extends CI_Controller {
             $result .= '>'.$item.'</option>';
         }
         $result .= '</select>';
+        return $result;
+    }
+    
+    function createTableColumns($columnNames) {
+        $result = '<tr>';
+        foreach($columnNames as $column) {
+            $result .= '<td><h3>'.$column.'</h3></td>';
+        }
+        $result .= '</tr>';
         return $result;
     }
 }
