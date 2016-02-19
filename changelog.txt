@@ -1,7 +1,10 @@
-Date/Time					What happened
+Date/Time						What happened
 
-Feb 17, 4:12pm                                  Edited autoload.php : database library
-Feb 17, 3:52pm                                  Added stockticker.sql
-Feb 09, 5:05pm					Added .htaccess
-Feb 09, 4:38pm					Added .gitignore
-Feb 09, 4:16pm					Initial commit
+Feb 17, 10:21pm					Database fixes
+Feb 17, 9:20pm					Database changes
+Feb 17, 7:19pm					Page layout
+Feb 17, 4:12pm					Edited autoload.php : database library
+Feb 17, 3:52pm					Added stockticker.sql
+Feb 9, 5:05pm					Added .htaccess
+Feb 9, 4:38pm					Added .gitignore
+Feb 9, 4:16pm					Initial commit

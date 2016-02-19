@@ -7,10 +7,19 @@ class Welcome extends Application {
 	 * Index Page for this controller.
 	 */
 	public function index()
-	{
-            //$this->load->view('welcome_message');
-            $this->data['pagebody'] = 'index';
+	{ 
+            $this->data['playersQuery'] = $this->queryPlayers();
+            $this->data['pagebody'] = 'index';//new DBQuery().getDatabaseData();//'index';
             $this->data['pagenavigation'] = 'navigation';
             $this->render();
 	}
+        
+        public function queryPlayers() {
+            $data = $this->players->getDatabaseData();
+            $res = '';
+            foreach($data as $player) {
+                $res .= '<tr>  <td>' . $player["Player"] . '</td><td>' . $player["Cash"] . '</td></tr>';
+            }
+            return $res;
+        }
 }
