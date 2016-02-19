@@ -3,7 +3,7 @@
 	<head>
 		<title>{pagetitle}</title>
 		<meta charset="UTF-8" />
-		<link type="text/css" rel="stylesheet" href="style.css" />
+		<link type="text/css" rel="stylesheet" href="/assets/css/style.css" />
 		<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
 		<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 	</head>

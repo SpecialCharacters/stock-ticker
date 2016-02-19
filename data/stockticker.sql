@@ -22,6 +22,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `transactions`;
 DROP TABLE IF EXISTS `stockmovements`;
+DROP TABLE IF EXISTS `playerstocks`;
 DROP TABLE IF EXISTS `stocks`;
 DROP TABLE IF EXISTS `players`;
 
@@ -35,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `players` (
     `username` varchar(30) NOT NULL,
     `firstname` varchar(30) NOT NULL,
     `lastname` varchar(30) NOT NULL,
-    `cash` int(4) NOT NULL,
+	`password` varchar(30) NOT NULL,
+    `cash` int(10) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `players` (
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`username`, `firstname`, `lastname`, `cash`) VALUES
-('mick123','Mickey','Jaggar', 1000),
-('don123','Donald', 'Trumper', 3000),
-('geo123','George','Bushy', 2000),
-('hen123','Henry','Thirdy', 2500);
+INSERT INTO `players` (`username`, `firstname`, `lastname`, `password`, `cash`) VALUES
+('mick123','Mickey','Jaggar', 'sarauer', 1000),
+('don123','Donald', 'Trumper', '12345', 3000),
+('geo123','George','Bushy', '420blazeit', 2000),
+('hen123','Henry','Thirdy', 'password', 2500);
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,39 @@ INSERT INTO `stocks` (`code`, `stockname`, `category`, `stockvalue`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movements`
+-- Table structure for table `playerstocks`
+--
+
+CREATE TABLE IF NOT EXISTS `playerstocks` (
+    `username` varchar(30) NOT NULL,
+    `code` varchar(4) NOT NULL,
+    `amount` int(7) NOT NULL,
+    PRIMARY KEY(`username`, `code`),
+    FOREIGN KEY (`username`)
+		REFERENCES players(`username`)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (`code`)
+		REFERENCES stocks(`code`)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `playerstocks`
+--
+
+INSERT INTO `playerstocks` (`username`, `code`, `amount`) VALUES
+('mick123', 'GOLD', 500),
+('don123', 'BOND', 800),
+('don123', 'GOLD', 900),
+('geo123', 'OIL', 700),
+('geo123', 'IND', 420);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stockmovements`
 --
 
 CREATE TABLE IF NOT EXISTS `stockmovements` (
@@ -129,9 +163,7 @@ INSERT INTO `stockmovements` (`movementID`, `datetime`, `code`, `action`, `amoun
 (00029, '2016.02.01-09:01:54', 'IND', 'down', 10),
 (00030, '2016.02.01-09:01:56', 'GOLD', 'div', 20);
 
-
 -- --------------------------------------------------------
-
 
 --
 -- Table structure for table `transactions`

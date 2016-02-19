@@ -15,6 +15,7 @@ class Welcome extends Application {
             $this->render();
 	}
         
+
         /*
         public function queryPlayers() {
             $data = $this->players->getDatabaseData();
@@ -24,5 +25,4 @@ class Welcome extends Application {
             }
             return $res;
         }*/
-
 }

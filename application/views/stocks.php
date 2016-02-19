@@ -1,0 +1,1 @@
+<center><h2>Last stock<h2></center>
