@@ -34,5 +34,22 @@ class Players extends MY_Model {
         }
         return $newRes;
     }
+    
+    function getPlayersNames() {
+        $res = $this->all();
+        $newRes = array();
+        foreach($res as $queryIndex) {
+            $tmpRes = array();
+            array_push($tmpRes, $queryIndex->username, $queryIndex->firstname . ' ' . $queryIndex->lastname);
+            array_push($newRes, $tmpRes);
+        }
+        return $newRes;
+    }
+    
+    function getPlayerNamesByUsername($username) {
+        $res = $this->some('username', $username);
+        $retName = array($res[0]->firstname, $res[0]->lastname);
+        return $retName;
+    }
 
 }

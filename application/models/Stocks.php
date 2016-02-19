@@ -18,19 +18,30 @@ class Stocks extends MY_Model {
         $newRes = array();
         foreach($res as $queryIndex) {
             $tmpRes = array();
-            array_push($tmpRes, $queryIndex->stockname, $queryIndex->code, $queryIndex->stockvalue);
+            array_push($tmpRes, $queryIndex->code, $queryIndex->stockname, $queryIndex->code, $queryIndex->stockvalue);
             array_push($newRes, $tmpRes);
         }
         return $newRes;
     }
     
-        function getStockByCode($code) {
+    function getStockByCode($code) {
         $res = $this->some('code', $code);
         $newRes = array();
         foreach($res as $queryIndex) {
             $tmpRes = array();
             array_push($tmpRes, $queryIndex->stockname, $queryIndex->code, $queryIndex->stockvalue);
             array_push($newRes, $tmpRes);
+        }
+        return $newRes;
+    }
+    
+    function getStocksList() {
+        $res = $this->getStocks();
+        $newRes = array();
+        foreach($res as $queryIndex) {
+            $tempArray = array();
+            array_push($tempArray, $queryIndex[0], $queryIndex[1]);
+            array_push($newRes, $tempArray);
         }
         return $newRes;
     }

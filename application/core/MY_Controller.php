@@ -40,7 +40,7 @@ class Application extends CI_Controller {
         $this->parser->parse('_template', $this->data);
     }
     
-    function parseQuery($queryData) {
+    function parseQuery($queryData, $ignoreIndex = -1) {
             $res = '';
             
             if ($queryData == NULL) {
@@ -49,17 +49,18 @@ class Application extends CI_Controller {
             
             foreach($queryData as $queryIndex) {
                 $res .= '<tr>';
-                foreach($queryIndex as $singular) {
-                    $res .= '<td>' . $singular . '</td>';
+                for ($index = 0; $index < count($queryIndex); $index++) {
+                    if ($ignoreIndex !== $index) {
+                        $res .= '<td>' . $queryIndex[$index] . '</td>';
+                    }
                 }
                 $res .= '</tr>';
             }
             return $res;
     }
     
-        function parseQueryClickable($queryData, $linkto) {
+        function parseQueryClickable($queryData, $linkto, $IgnoreIndex = 0) {
             $res = '';
-            $first = TRUE;
             
             if ($queryData == NULL) {
                 return '';
@@ -67,16 +68,15 @@ class Application extends CI_Controller {
             
             foreach($queryData as $queryIndex) {
                 $res .= '<tr>';
-                $first = TRUE;
-                foreach($queryIndex as $singular) {
-                    if ($first) {
-                        $res .= '<td><a id="clickable" href="/'. $linkto. '/' . $singular . '">' . $singular . '</a></td>';
-                        $first = FALSE;
+                for ($index = $IgnoreIndex; $index < count($queryIndex); $index++) {
+                    $res .= '<td>';
+                    if ($index === $IgnoreIndex) {
+                        $res .= '<a id="clickable" href="/'. $linkto. '/' . $queryIndex[0] . '">' . $queryIndex[$index] . '</a>';
                     } else {
-                        $res .= '<td>' . $singular . '</td>';
+                        $res .= $queryIndex[$index];
                     }
+                    $res .= '</td>';
                 }
-                $res .= '</a>';
             }
             return $res;
     }
@@ -132,11 +132,11 @@ class Application extends CI_Controller {
         $URI.='/';
         $result = '<select onchange="window.location=\''."http://$_SERVER[HTTP_HOST]$URI".'\' + this.value;">';
         foreach($dropdowndata as $item) {
-            $result .= '<option value="'.$item.'"';
-            if ($item==$pagename) {
+            $result .= '<option value="'.$item[0].'"';
+            if ($item[0]==$pagename) {
                 $result .= ' selected="selected"';
             }
-            $result .= '>'.$item.'</option>';
+            $result .= '>'.$item[1] . ' [' . $item[0] . ']' . '</option>';
         }
         $result .= '</select>';
         return $result;
