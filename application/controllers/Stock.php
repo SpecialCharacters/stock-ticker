@@ -8,7 +8,7 @@ class Stock extends Application {
 	public function index($name = null)
 	{ 
             $this->data['pagebody'] = 'stocks';//new DBQuery().getDatabaseData();//'index';
-            $this->data['pagenavigation'] = 'navigation';
+            $this->data['navigation'] = $this->createNavigation(3);
             $this->render();
 	}
 }
