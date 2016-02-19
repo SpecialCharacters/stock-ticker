@@ -13,24 +13,23 @@ class Movement extends MY_Model {
     }
     
     function getMovementsStock($name) {
-        $codeQuery = $this->stocks->getStocks();
-        $code = '';
-        foreach($codeQuery as $tmpStock) {
-            if ($tmpStock[0] == $name) {
-                $code = $tmpStock[1];
-            }
-        }
-        $res = $this->some('code', $code);
+        $res = $this->some('code', $name);
         $newRes = array();
         
         $index = count($res) - 1;
 
         while($index > 0) {
             $tmpRes = array();
-            array_push($tmpRes, $res{$index}->datetime, $res{$index}->amount);
+            array_push($tmpRes, $res{$index}->datetime, $res{$index}->action, $res{$index}->amount);
             array_push($newRes, $tmpRes);
             $index--;
         }
         return $newRes;
+    }
+    
+    function getMostRecentCodeMovement() {
+        $res = $this->all();
+        $index = count($res) - 1;
+        return $res{$index}->code;
     }
 }

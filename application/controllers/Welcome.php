@@ -12,9 +12,10 @@ class Welcome extends Application {
             $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(1);//$this->navigation(1);
             $this->data['dropdowndata'] = '';
-           
+            $this->data['contentTitle'] = 'W E L C O M E';
+            
             $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);
-            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock');
+            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock', 1);
             
             $this->data['rightTableColumns'] = $this->createTableColumns(['Name', 'Equity', 'Cash']);
             $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile');

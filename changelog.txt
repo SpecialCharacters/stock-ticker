@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 3:38pm                                  Finished stocks queries, started profile queries
 Feb 19, 3:37pm                                  Added a failed to login feature
 Feb 19, 3:28pm                                  Implemented the login controller
 Feb 19, 11:50am                                 Created login controller
