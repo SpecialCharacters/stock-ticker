@@ -9,6 +9,17 @@
 class Playerstocks extends MY_Model2 {
     
     function __construct() {
-        parent::__construct('playerstock','username','code');
+        parent::__construct('playerstocks','username','code');
+    }
+    
+    function getPlayerStocks($name) {
+        $res = $this->some('username', $name);
+        $newRes = array();
+        foreach($res as $queryIndex) {
+            $tmpRes = array();
+            array_push($tmpRes, $queryIndex->code, $queryIndex->amount);
+            array_push($newRes, $tmpRes);
+        }
+        return $newRes;
     }
 }
