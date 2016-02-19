@@ -20,5 +20,5 @@ class Welcome extends Application {
 			
             
             $this->render();
-	}
+	}        
 }
