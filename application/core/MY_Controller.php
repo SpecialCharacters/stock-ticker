@@ -36,8 +36,82 @@ class Application extends CI_Controller {
     function render() {
         //$this->data['navbar'] = build_menu_bar($this->choices);
         $this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
-        $this->data['navigation'] = $this->parser->parse($this->data['pagenavigation'], $this->data, true);
         $this->data['data'] = &$this->data;
-        $this->parser->parse('template', $this->data);
+        $this->parser->parse('_template', $this->data);
     }
+    
+    function parseQuery($queryData) {
+            $res = '';
+            
+            if ($queryData == NULL)
+                return '';
+            
+            foreach($queryData as $queryIndex) {
+                $res .= '<tr>';
+                foreach($queryIndex as $singular) {
+                    $res .= '<td>' . $singular . '</td>';
+                }
+                $res .= '</tr>';
+            }
+            return $res;
+    }
+    
+        function parseQueryClickable($queryData) {
+            $res = '';
+            $first = TRUE;
+            
+            if ($queryData == NULL)
+                return '';
+            
+            foreach($queryData as $queryIndex) {
+                $res .= '<tr>';
+                $first = TRUE;
+                foreach($queryIndex as $singular) {
+                    if ($first) {
+                        $res .= '<td><a href="/stock/' . $singular . '">' . $singular . '</a></td>';
+                        $first = FALSE;
+                    } else {
+                        $res .= '<td>' . $singular . '</td>';
+                    }
+                }
+                $res .= '</a>';
+            }
+            return $res;
+    }
+    
+    //To be removed and replaced with below version.
+    protected function createNavigation($page) {
+        $result = '';
+        
+        $result = '
+        <form id="loginForm" action="loginAttempt.php">
+            First name:<br>
+            <input type="text" name="firstname"><br>
+            Password name:<br>
+            <input type="password" name="password"><br>
+            <input type="submit" value="Submit">
+        </form>
+        
+        <li><a href="welcome">Homepage</a></li>
+        <li><a href="profile">Profile</a></li>
+        <li><a href="stock">Stock</a></li>';
+        
+        return $result;
+    }
+    
+    //Unfinished attempt at dynamically generating navigation & selected.
+    /*protected function createNavigation($name) {
+        $result = '';
+        $counter = 1;
+        
+        foreach($this->choices as $choice) {
+            $result .= '<li';
+            if ($page == $counter++) {
+                $result .= ' id=currentpage';
+            }
+            $result .= '><a hreh=\"' . $choice-> . ">" . "Homepage" . "</a></li>";
+        }
+        
+        return $result;
+    }*/
 }
