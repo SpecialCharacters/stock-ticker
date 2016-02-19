@@ -12,8 +12,13 @@ class Portfolio extends Application {
             $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(2);
             $this->data['dropdowndata'] = $this->createDropDown($playerNames, $name);
+            
             $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Amount']);
+            //$this->data['leftTableColumns'] = $this->jaegarsLeftTableQueryFunction();
+            
             $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Timestamp']);
+            //$this->data['rightTableQuery'] = $this->jaegarsRightTableQueryFunction();
+            
             $this->render();
 	}
 }
