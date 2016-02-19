@@ -20,4 +20,53 @@ class Welcome extends Application {
             
             $this->render();
 	}
+        
+        public function queryLogin($username, $password){
+            
+            $this -> db -> select('username, password');
+            $this -> db -> from('players');
+            $this -> db -> where('username', $username);
+            $this -> db -> where('password', $password);
+            
+            $result = $this-> db ->get();
+            
+            if($result -> num_rows() == 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function setNavBarLogin($password){
+            
+            $result = $this->user->queryLogin($username,$password);
+            
+            if($result)
+            {
+                //however we want to set the navbar if they are successful
+                $sess_array = array();
+                foreach($result as $row)
+                {
+                    $sess_array = array(
+                        'id' => $row->id,
+                        'username' => $row->username
+                    );
+                }
+                $this->session->set_userdata('logged_in', $sess_array);
+                return true;
+            }else{
+                //how ever we want to set the navbar if they type in a wrong password
+                //$this->form_validation->set_message('check database', 'invalid password');
+                return false;
+            }
+            
+        }
+        
+        public function setNavBarLogout(){
+            $this->session->unset_userdata('logged_in');
+            session_destroy();
+            redirect('home', 'refresh');
+        }
+        
 }
