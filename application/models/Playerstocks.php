@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-class Players extends MY_Model {
+class Playerstocks extends MY_Model2 {
     
     function __construct() {
-        parent::__construct('players','username');
+        parent::__construct('playerstock','username','code');
     }
 }
