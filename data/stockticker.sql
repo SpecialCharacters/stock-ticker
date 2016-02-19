@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `players` (
     `username` varchar(30) NOT NULL,
     `firstname` varchar(30) NOT NULL,
     `lastname` varchar(30) NOT NULL,
-	`password` varchar(30) NOT NULL,
+    `password` varchar(30) NOT NULL,
     `cash` int(10) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
