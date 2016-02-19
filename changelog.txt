@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 3:33am					Added DB queries for calculating equity
 Feb 19, 3:19am					Minor bugfixes
 Feb 19, 2:52am					Added DB queries for stock details
 Feb 19, 2:11am					Added DB queries and linking for main page
