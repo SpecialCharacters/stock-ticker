@@ -10,7 +10,7 @@ class Welcome extends Application {
 	{ 
             $this->data['playersQuery'] = $this->queryPlayers();
             $this->data['pagebody'] = 'index';//new DBQuery().getDatabaseData();//'index';
-            $this->data['pagenavigation'] = 'navigation';
+            $this->data['navigation'] = $this->createNavigation(1);//$this->navigation(1);
             $this->render();
 	}
         
