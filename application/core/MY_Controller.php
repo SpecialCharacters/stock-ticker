@@ -117,7 +117,6 @@ class Application extends CI_Controller {
         $URI = "$_SERVER[REQUEST_URI]";
         if (strlen($URI) > 1) {
             $arr = explode('/', $URI);
-            print_r($arr);
             $URI = $arr[0].'/'.$arr[1];
         }
         $URI.='/';
