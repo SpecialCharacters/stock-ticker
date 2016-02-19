@@ -8,15 +8,13 @@
 	</head>
 	<body>
 		<div id="header">
-			<h1 id="pageHeader">{pageheader}</h1>		
+                    <h1 id="pageHeader">{pageheader}</h1>		
 		</div>	
 		<div id="navigation">
-			<ul>
-				{navigation}
-			</ul>
+                    {navigation}
 		</div>
 		<div id="content">
-			{content}
+                    {content}
 		</div>
 	</body>
 </html>

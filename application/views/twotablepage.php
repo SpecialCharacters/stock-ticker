@@ -1,6 +1,6 @@
 <table id="titleTable">
 	<tr>
-            <td><h2>{playername} {dropdowndata}</h2></td>
+            <td><h2>{contentTitle} {dropdowndata}</h2></td>
 	</tr>
 </table>
 <div id="TableDiv">
