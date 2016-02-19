@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{pagetitle}</title>
+		<title id="pageTitle">{pagetitle}</title>
 		<meta charset="UTF-8" />
 		<link type="text/css" rel="stylesheet" href="/assets/css/style.css" />
-		<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+                <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<div id="header">
-			<h1>{pageheader}</h1>		
+			<h1 id="pageHeader">{pageheader}</h1>		
 		</div>	
 		<div id="navigation">
 			<ul>

@@ -9,7 +9,7 @@ class Portfolio extends Application {
 	{ 
             //$name is the name of the user's data being passed in
             $this->data['pagebody'] = 'profile';//new DBQuery().getDatabaseData();//'index';
-            $this->data['pagenavigation'] = 'navigation';
+            $this->data['navigation'] = $this->createNavigation(2);
             $this->render();
 	}
 }
