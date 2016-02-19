@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 3:28pm                                  Implemented the login controller
 Feb 19, 11:50am                                 Created login controller
 Feb 19, 10:45am                                 Fix github problem with account connection (account: dhivmanohar)                         
 Feb 19, 9:27am                                  Refactored pages to have no duplicate HTML
