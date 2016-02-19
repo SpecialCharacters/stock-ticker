@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends Application {
@@ -11,7 +12,7 @@ class Welcome extends Application {
             $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
             $this->data['navigation'] = $this->createNavigation(1);//$this->navigation(1);
             $this->data['dropdowndata'] = '';
-            
+           
             $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);
             $this->data['rightTableQuery'] = $this->parseQuery($this->players->getPlayers());
             
