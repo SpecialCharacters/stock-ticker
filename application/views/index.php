@@ -6,17 +6,9 @@
 </table>
 <table id="leftTable">
 	<tr>
-		<td><h3>Name</h3></td><td><h3>Value</h3></td>
+            <td><h3>Name</h3></td><td><h3>Code</h3></td><td><h3>Value</h3></td>
 	</tr>
-	<tr>
-		<td>Facebook</td><td>$100</td>
-	</tr>
-	<tr>
-		<td>Google</td><td>$90</td>
-	</tr>
-	<tr>
-		<td>AT&T</td><td>$35</td>
-	</tr>
+        {stocksQuery}
 </table>
 
 
