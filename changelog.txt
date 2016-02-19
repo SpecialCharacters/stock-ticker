@@ -1,7 +1,8 @@
 Date/Time						What happened
 
-Feb 18, 8:04pm                                  Fixed broken links
-Feb 18, 7:59pm                                  Finished routing
+Feb 18, 9:40pm					Added password column to players
+Feb 18, 8:04pm					Fixed broken links
+Feb 18, 7:59pm					Finished routing
 Feb 18, 6:50pm					New database table
 Feb 18, 6:15pm					Placeholder views
 Feb 18, 5:30pm					Database queries
