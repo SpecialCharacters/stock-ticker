@@ -1,5 +1,8 @@
 Date/Time						What happened
 
+Feb 18, 6:50pm					New database table
+Feb 18, 6:15pm					Placeholder views
+Feb 18, 5:30pm					Database queries
 Feb 17, 10:21pm					Database fixes
 Feb 17, 9:20pm					Database changes
 Feb 17, 7:19pm					Page layout
