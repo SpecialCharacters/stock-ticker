@@ -23,4 +23,15 @@ class Stocks extends MY_Model {
         }
         return $newRes;
     }
+    
+        function getStockByCode($code) {
+        $res = $this->some('code', $code);
+        $newRes = array();
+        foreach($res as $queryIndex) {
+            $tmpRes = array();
+            array_push($tmpRes, $queryIndex->stockname, $queryIndex->code, $queryIndex->stockvalue);
+            array_push($newRes, $tmpRes);
+        }
+        return $newRes;
+    }
 }
