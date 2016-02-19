@@ -7,7 +7,11 @@ class Stock extends Application {
 	 */
 	public function index($name = null)
 	{ 
-            $this->data['pagebody'] = 'stocks';//new DBQuery().getDatabaseData();//'index';
+            
+            $this->data['stockname'] = $name;
+            $this->data['stockPriceHistory'] = $this->parseQuery($this->movement->getMovementsStock($name));
+            //$this->data['stocksHistoryQuery'];
+            $this->data['pagebody'] = 'stocks';
             $this->data['navigation'] = $this->createNavigation(3);
             $this->render();
 	}
