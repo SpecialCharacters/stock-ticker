@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `players` (
     `username` varchar(30) NOT NULL,
     `firstname` varchar(30) NOT NULL,
     `lastname` varchar(30) NOT NULL,
+	`password` varchar(30) NOT NULL,
     `cash` int(10) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -44,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `players` (
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`username`, `firstname`, `lastname`, `cash`) VALUES
-('mick123','Mickey','Jaggar', 1000),
-('don123','Donald', 'Trumper', 3000),
-('geo123','George','Bushy', 2000),
-('hen123','Henry','Thirdy', 2500);
+INSERT INTO `players` (`username`, `firstname`, `lastname`, `password`, `cash`) VALUES
+('mick123','Mickey','Jaggar', 'sarauer', 1000),
+('don123','Donald', 'Trumper', '12345', 3000),
+('geo123','George','Bushy', '420blazeit', 2000),
+('hen123','Henry','Thirdy', 'password', 2500);
 
 -- --------------------------------------------------------
 
@@ -103,9 +104,10 @@ CREATE TABLE IF NOT EXISTS `playerstocks` (
 
 INSERT INTO `playerstocks` (`username`, `code`, `amount`) VALUES
 ('mick123', 'GOLD', 500),
-('don123', 'BOND', 8100),
-('don123', 'GOLD', 9200),
-('geo123', 'OIL', 900);
+('don123', 'BOND', 800),
+('don123', 'GOLD', 900),
+('geo123', 'OIL', 700),
+('geo123', 'IND', 420);
 
 -- --------------------------------------------------------
 
