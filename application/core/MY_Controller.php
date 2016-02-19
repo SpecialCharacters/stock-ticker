@@ -58,7 +58,7 @@ class Application extends CI_Controller {
             return $res;
     }
     
-        function parseQueryClickable($queryData) {
+        function parseQueryClickable($queryData, $linkto) {
             $res = '';
             $first = TRUE;
             
@@ -71,7 +71,7 @@ class Application extends CI_Controller {
                 $first = TRUE;
                 foreach($queryIndex as $singular) {
                     if ($first) {
-                        $res .= '<td><a id="clickable" href="/stock/' . $singular . '">' . $singular . '</a></td>';
+                        $res .= '<td><a id="clickable" href="/'. $linkto. '/' . $singular . '">' . $singular . '</a></td>';
                         $first = FALSE;
                     } else {
                         $res .= '<td>' . $singular . '</td>';

@@ -14,10 +14,11 @@ class Welcome extends Application {
             $this->data['dropdowndata'] = '';
            
             $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);
-            $this->data['rightTableQuery'] = $this->parseQuery($this->players->getPlayers());
+            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock');
             
             $this->data['rightTableColumns'] = $this->createTableColumns(['Name', 'Equity', 'Cash']);
-            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks());
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile');
+			
             
             $this->render();
 	}
