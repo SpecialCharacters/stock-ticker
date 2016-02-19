@@ -7,7 +7,6 @@ class Welcome extends Application {
 	 * Index Page for this controller.
 	 */
 	public function index()
-
 	{ 
             //$this->data['playersQuery'] = $this->queryPlayers();
             $this->data['pagebody'] = 'index';//new DBQuery().getDatabaseData();//'index';

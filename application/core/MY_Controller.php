@@ -43,8 +43,6 @@ class Application extends CI_Controller {
     
     //To be removed and replaced with below version.
     protected function createNavigation($page) {
-        $result = '';
-        
         $result = '
         <form id="loginForm" action="loginAttempt.php">
             First name:<br>
@@ -54,9 +52,9 @@ class Application extends CI_Controller {
             <input type="submit" value="Submit">
         </form>
         
-        <li><a href="welcome">Homepage</a></li>
-        <li><a href="profile">Profile</a></li>
-        <li><a href="stock">Stock</a></li>';
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/stock">Stock</a></li>';
         
         return $result;
     }
@@ -76,4 +74,24 @@ class Application extends CI_Controller {
         
         return $result;
     }*/
+    
+    function createDropDown($dropdowndata, $pagename) {
+        $URI = "$_SERVER[REQUEST_URI]";
+        if (strlen($URI) > 1) {
+            $arr = explode('/', $URI);
+            print_r($arr);
+            $URI = $arr[0].'/'.$arr[1];
+        }
+        $URI.='/';
+        $result = '<select onchange="window.location=\''."http://$_SERVER[HTTP_HOST]$URI".'\' + this.value;">';
+        foreach($dropdowndata as $item) {
+            $result .= '<option value="'.$item.'"';
+            if ($item==$pagename) {
+                $result .= ' selected="selected"';
+            }
+            $result .= '>'.$item.'</option>';
+        }
+        $result .= '</select>';
+        return $result;
+    }
 }

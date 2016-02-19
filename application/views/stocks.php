@@ -1,6 +1,6 @@
 <table id="titleTable">
 	<tr>
-		<td><h2>{stockname}</h2></td>
+		<td><h2>{stockname} {dropdowndata}</h2></td>
 	</tr>
 </table>
 <div id="TableDiv">
