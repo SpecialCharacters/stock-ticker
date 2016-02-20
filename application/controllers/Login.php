@@ -3,10 +3,10 @@
 /**
  * controllers/Login.php
  *
- * Login model
+ * Login controller
  *
- * @author		Dhivya Manohar
- * @copyright           2016-, Special Characters
+ * @author				Dhivya Manohar
+ * @copyright			2016-, Special Characters
  * ------------------------------------------------------------------------
  */
 
@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends Application {     
 
     /**
-     * 
+     * Attempt to login
      * @param type $username user input 
      * @param type $password user input
      */
@@ -33,28 +33,25 @@ class Login extends Application {
     }
     
     /**
-     * 
+     * Check login data against database
      * @param type $username user name to query
      * @param type $password password to query
      * @return boolean return false if unable to find a row that matches
      *          description
      */
     public function queryLogin($username, $password) {
-        
         //database query
-        $this -> db -> select('username, firstname,password');
+        $this -> db -> select('username, firstname, password');
         $this -> db -> from('players');
         $this -> db -> where('username', $username);
         $this -> db -> where('password', $password);
         
-        
-        $result = $this-> db ->get();//return results found
+        $result = $this-> db -> get();//return results found
 
         //handle condition of result
-        if($result -> num_rows() == 1){
+        if($result -> num_rows() == 1) {
             return $result->result();
-        }
-        else{
+        } else {
             return false;
         }
    }
@@ -68,12 +65,10 @@ class Login extends Application {
     public function setNavBarLogin($username,$password){
         $result = $this->queryLogin($username,$password);
 
-        if($result)
-        {
+        if($result) {
             $sess_array = array();
             //go through the result and set session variable with data
-            foreach($result as $row)
-            {
+            foreach($result as $row) {
                 $sess_array = array(
                     'username' => $row->username,
                     'firstname' => $row->firstname
@@ -83,22 +78,17 @@ class Login extends Application {
             
             redirect('/', 'refresh');//if logged in, refresh to welcome page
             return true;
-        }else{
+        } else {
             return false;
         }
     }
     
     /**
-     * Logouts (clears session variable)
+     * Logout function (clears session variable)
      */
-    public function setNavBarLogout(){
+    public function setNavBarLogout() {
         $this->session->unset_userdata('logged_in');
         session_destroy();
         redirect('/', 'refresh'); //redirects to welcome page after logout
     }
 }
-
-
-
-
-

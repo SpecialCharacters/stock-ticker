@@ -5,17 +5,15 @@
  *
  * Stocks model
  *
- * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
- * @copyright           2016-, Special Characters
+ * @author				Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright			2016-, Special Characters
  * ------------------------------------------------------------------------
  */
 
 class Stocks extends MY_Model {
     
     /**
-     * Constructor.
-     * @param string $tablename Name of the database table
-     * @param string $keyfield  Name of the primary key of the table
+     * Constructor
      */
     function __construct() {
         parent::__construct('stocks','code');
@@ -23,7 +21,7 @@ class Stocks extends MY_Model {
     
     /**
      * Get all stocks from database (every column)
-     * @return array all stocks
+     * @return array of all stocks
      */
     function getStocks() {
         $res = $this->all();
@@ -37,17 +35,18 @@ class Stocks extends MY_Model {
     }
     
     /**
-     * Get all stocks by code (stock name, code, stock value)
+     * Get stock information of a given stock, specified by code
      * @param type $code Stock code
-     * @return type all stocks
+     * @return array of specified stock's info
      */
     function getStockByCode($code) {
         $res = $this->some('code', $code);
         return array($res{0}->stockname, $res{0}->code, $res{0}->stockvalue);
     }
     
-    /*
+    /**
      * Get all stocks and list them
+	 * @return array of all stocks's code and name
      */
     function getStocksList() {
         $res = $this->getStocks();
@@ -60,6 +59,11 @@ class Stocks extends MY_Model {
         return $newRes;
     }
     
+	/**
+     * Get price of stock 
+     * @param type $code Stock code
+     * @return type all stocks
+     */
     function getStockPrice($code) {
         $res = $this->some('code', $code);
         return $res{0}->stockvalue;

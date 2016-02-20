@@ -1,21 +1,21 @@
-<!-- Two table layout for pages !-->
+<!-- Two table layout for pages -->
 
 <table id="titleTable">
 	<tr>
-            <td><h2>{contentTitle} {dropdowndata}</h2></td>
+		<td><h2>{contentTitle} {dropdowndata}</h2></td>
 	</tr>
 </table>
 <div id="TableDiv">
     <div id="leftTableDiv">
         <table id="leftTable">
-                {leftTableColumns}                
-                {leftTableQuery}
+			{leftTableColumns}                
+			{leftTableQuery}
         </table>
     </div>
     <div id="rightTableDiv">
         <table id="rightTable" text-align="left">
-                {rightTableColumns}
-                {rightTableQuery}
+			{rightTableColumns}
+			{rightTableQuery}
         </table>
     </div>
 </div>

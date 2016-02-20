@@ -5,26 +5,24 @@
  *
  * Movement model
  *
- * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar,
- * @copyright           2016-, Special Characters
+ * @author				Jaegar Sarauer, Allen Tsang, Dhivya Manohar,
+ * @copyright			2016-, Special Characters
  * ------------------------------------------------------------------------
  */
 
 class Movement extends MY_Model {
     
     /**
-     * Constructor.
-     * @param string $tablename Name of the database table
-     * @param string $keyfield  Name of the primary key of the table
+     * Constructor
      */
     function __construct() {
         parent::__construct('stockmovements','movementID');
     }
     
     /**
-     * Gets movement of stock
+     * Gets movements of specified stock
      * @param type $name name of stock
-     * @return array
+     * @return array containing movement data
      */
     function getMovementsStock($name) {
         $res = $this->some('code', $name);
@@ -43,8 +41,8 @@ class Movement extends MY_Model {
     }
     
     /**
-     * Gets most recent stock that moved
-     * @return the most recent stock that moved
+     * Gets the code of the most recent stock that moved
+     * @return code of the most recent stock that moved
      */
     function getMostRecentCodeMovement() {
         $res = $this->all();

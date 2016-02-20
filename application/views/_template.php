@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Template for pages!-->
+<!-- Template for pages -->
 <html>
 	<head>
 		<title id="pageTitle">{pagetitle}</title>
@@ -9,13 +9,13 @@
 	</head>
 	<body>
 		<div id="header">
-                    <h1 id="pageHeader">{pageheader}</h1>		
+			<h1 id="pageHeader">{pageheader}</h1>		
 		</div>	
 		<div id="navigation">
-                    {navigation}
+			{navigation}
 		</div>
 		<div id="content">
-                    {content}
+			{content}
 		</div>
 	</body>
 </html>

@@ -5,8 +5,8 @@
  *
  * Player model
  *
- * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
- * @copyright           2016-, Special Characters
+ * @author				Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright			2016-, Special Characters
  * ------------------------------------------------------------------------
  */
 
@@ -78,5 +78,4 @@ class Players extends MY_Model {
         $retName = array($res[0]->firstname, $res[0]->lastname);
         return $retName;
     }
-
 }
