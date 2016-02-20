@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Template for pages!-->
 <html>
 	<head>
 		<title id="pageTitle">{pagetitle}</title>

@@ -1,17 +1,30 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * model/Playerstocks.php
+ *
+ * PlayerStock model
+ *
+ * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright           2016-, Special Characters
+ * ------------------------------------------------------------------------
  */
 
 class Playerstocks extends MY_Model2 {
-    
+    /**
+     * Constructor.
+     * @param string $tablename Name of the database table
+     * @param string $keyfield  Name of the primary key of the table
+     */
     function __construct() {
         parent::__construct('playerstocks','username','code');
     }
     
+    /**
+     * Get player's stocks base on user name
+     * @param type $name user name of player
+     * @return array of stocks of players
+     */
     function getPlayerStocks($name) {
         $res = $this->some('username', $name);
         $newRes = array();
@@ -23,6 +36,11 @@ class Playerstocks extends MY_Model2 {
         return $newRes;
     }
     
+    /**
+     * Get stocks of players and their user name
+     * @param type $name
+     * @return array
+     */
     function getPlayerStocksAndNames($name) {
         $res = $this->getPlayerStocks($name);
         $newRes = array();

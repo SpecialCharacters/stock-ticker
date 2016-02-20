@@ -5,7 +5,7 @@
  *
  * Login model
  *
- * @author		Carson Roscoe, Jaegar Sarauer, Dhivya Manohar
+ * @author		Dhivya Manohar
  * @copyright           2016-, Special Characters
  * ------------------------------------------------------------------------
  */

@@ -1,3 +1,5 @@
+<!-- Two table layout for pages !-->
+
 <table id="titleTable">
 	<tr>
             <td><h2>{contentTitle} {dropdowndata}</h2></td>

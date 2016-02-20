@@ -4,7 +4,7 @@
  *
  * Stock model
  *
- * @author		Jaegar Sarauer, Dhivya Manohar
+ * @author		Carson Roscoe,Jaegar Sarauer
  * @copyright           2016-, Special Characters
  * ------------------------------------------------------------------------
  */
