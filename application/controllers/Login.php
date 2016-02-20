@@ -81,7 +81,7 @@ class Login extends Application {
             }
             $this->session->set_userdata('logged_in', $sess_array);
             
-            redirect('welcome', 'refresh');//if logged in, refresh to welcome page
+            redirect('/', 'refresh');//if logged in, refresh to welcome page
             return true;
         }else{
             return false;
@@ -94,7 +94,7 @@ class Login extends Application {
     public function setNavBarLogout(){
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        redirect('welcome', 'refresh'); //redirects to welcome page after logout
+        redirect('/', 'refresh'); //redirects to welcome page after logout
     }
 }
 
