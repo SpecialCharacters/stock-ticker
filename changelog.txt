@@ -1,0 +1,38 @@
+Date/Time						What happened
+
+Feb 19, 7:25pm					Edited README.txt
+Feb 19, 7:20pm					Comment review and code formatting
+Feb 19, 6:40pm					Added README.txt
+Feb 19, 6:00pm					Commented rest of the code - models & views
+Feb 19, 5:26pm					Commented base controller/model and controllers
+Feb 19, 4:57pm					Fixed profile accessing, added links to profiles on main page
+Feb 19, 4:36pm					Finished profile queries
+Feb 19, 4:26pm					Changed all the _GET to _POST
+Feb 19, 4:16pm					Login prompt for profile and bug fixes
+Feb 19, 3:38pm					Finished stocks queries, started profile queries
+Feb 19, 3:37pm					Added a failed to login feature
+Feb 19, 3:28pm					Implemented the login controller
+Feb 19, 11:50am					Created login controller
+Feb 19, 10:45am					Fix github problem with account connection (account: dhivmanohar)                         
+Feb 19, 9:27am					Refactored pages to have no duplicate HTML
+Feb 19, 8:54am					Added dropdown pickers & their functionality
+Feb 19, 3:33am					Added DB queries for calculating equity
+Feb 19, 3:19am					Minor bugfixes
+Feb 19, 2:52am					Added DB queries for stock details
+Feb 19, 2:11am					Added DB queries and linking for main page
+Feb 19, 1:28am					Updated UI/site look
+Feb 18, 10:00pm					Added models
+Feb 18, 9:40pm					Added password column to players
+Feb 18, 8:04pm					Fixed broken links
+Feb 18, 7:59pm					Finished routing
+Feb 18, 6:50pm					New database table
+Feb 18, 6:15pm					Placeholder views
+Feb 18, 5:30pm					Database queries
+Feb 17, 10:21pm					Database fixes
+Feb 17, 9:20pm					Database changes
+Feb 17, 7:19pm					Page layout
+Feb 17, 4:12pm					Edited autoload.php : database library
+Feb 17, 3:52pm					Added stockticker.sql
+Feb 9, 5:05pm					Added .htaccess
+Feb 9, 4:38pm					Added .gitignore
+Feb 9, 4:16pm					Initial commit
