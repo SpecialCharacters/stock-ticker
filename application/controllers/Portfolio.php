@@ -19,11 +19,11 @@ class Portfolio extends Application {
             $fullName = $this->players->getPlayerNamesByUsername($realName);
             $this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']';
             
-            $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Amount']);
-            //$this->data['leftTableColumns'] = $this->jaegarsLeftTableQueryFunction();
+            $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Amount']);
+            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->playerstocks->getPlayerStocksAndNames($realName), 'stock', 1);
             
-            $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Timestamp']);
-            //$this->data['rightTableQuery'] = $this->jaegarsRightTableQueryFunction();
+            $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Type', 'Timestamp']);
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByUsername($realName), 'stock', 1);
             
             $this->render();
 	}
