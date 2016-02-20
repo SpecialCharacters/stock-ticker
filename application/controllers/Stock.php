@@ -16,13 +16,13 @@ class Stock extends Application {
             
             
             $fullName = $this->stocks->getStockByCode($realName);
-            $this->data['contentTitle'] = $fullName[0] . ' [' . $fullName[1] . ']';
+            $this->data['contentTitle'] = $fullName[0] . ' [' . $fullName[1] . '] = $' . $this->stocks->getStockPrice($realName);
             
             $this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
             $this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($realName));
             
             $this->data['rightTableColumns'] = $this->createTableColumns(['Player', 'Amount', 'Type', 'Timestamp']);
-            $this->data['rightTableQuery'] = $this->parseQuery($this->transaction->getTransactionByCode($realName));
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByCode($realName), 'profile', 1);
             
             $this->render();
 	}

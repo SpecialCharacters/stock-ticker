@@ -18,7 +18,7 @@ class Welcome extends Application {
             $this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock', 1);
             
             $this->data['rightTableColumns'] = $this->createTableColumns(['Name', 'Equity', 'Cash']);
-            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile');
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile', 1);
 			
             
             $this->render();
