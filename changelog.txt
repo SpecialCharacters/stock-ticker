@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 5:26pm                                  Commented base controller/model and controllers
 Feb 19, 4:26pm                                  Changed all the _GET to _POST
 Feb 19, 4:16pm					Login prompt for profile and bug fixes
 Feb 19, 3:38pm					Finished stocks queries, started profile queries
