@@ -32,11 +32,16 @@ class Portfolio extends Application {
             
             $fullName = $this->players->getPlayerNamesByUsername($realName); //query players          
             
+
             $this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
-            
+
             //populating tables with data from query
-            $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Amount']);            
-            $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Timestamp']); 
+            $this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Amount']);
+            $this->data['leftTableQuery'] = $this->parseQueryClickable($this->playerstocks->getPlayerStocksAndNames($realName), 'stock', 1);
+            
+            $this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Type', 'Timestamp']);
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByUsername($realName), 'stock', 1);
+
             
             $this->render();
 	}

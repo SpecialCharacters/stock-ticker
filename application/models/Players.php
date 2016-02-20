@@ -19,7 +19,7 @@ class Players extends MY_Model {
         if ($res == NULL)
             return 0;
         foreach($res as $queryIndex) {
-            $total += ((int)$queryIndex[1] * (int)$this->stocks->getStockByCode($queryIndex[0])[0][2]);
+            $total += ((int)$queryIndex[1] * (int)$this->stocks->getStockByCode($queryIndex[0])[2]);
         }
         return $total;
     }

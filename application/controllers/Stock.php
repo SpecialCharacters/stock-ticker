@@ -22,15 +22,13 @@ class Stock extends Application {
             $this->data['navigation'] = $this->createNavigation(3);//create navigation bar - MY_CONTROLLER.php
             $this->data['dropdowndata'] = $this->createDropDown($this->stocks->getStocksList(), $realName);//create drop down - MY_CONTROLLER.php
             
-            
-            $fullName = $this->stocks->getStockByCode($realName);//querying database
-            $this->data['contentTitle'] = $fullName[0][0] . ' [' . $fullName[0][1] . ']';//set page title
-            
-            //populating left table with data from query
-            $this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
-            $this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($realName));
-            
+            $fullName = $this->stocks->getStockByCode($realName);//query database
+            $this->data['contentTitle'] = $fullName[0] . ' [' . $fullName[1] . ']';//set page title            
+
             //populating right table with data from query
+            $this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
+            $this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($realName));            
+            
             $this->data['rightTableColumns'] = $this->createTableColumns(['Player', 'Amount', 'Type', 'Timestamp']);
             $this->data['rightTableQuery'] = $this->parseQuery($this->transaction->getTransactionByCode($realName));
             
