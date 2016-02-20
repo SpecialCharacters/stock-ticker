@@ -7,7 +7,7 @@ class Portfolio extends Application {
 	 */
 	public function index($name = null)
 	{ 
-            $realName = ($name === NULL)? $this->session->userdata('logged_in') : $name;
+            $realName = ($name === NULL)? $this->session->userdata('logged_in')['username'] : $name;
             if ($realName === NULL) {
                 //handle nobody logged in and no profile username request
 				echo '<script>alert("Please log in first.")</script>';
