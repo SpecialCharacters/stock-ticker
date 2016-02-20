@@ -16,28 +16,42 @@ Notes:
 
 Tasks Breakdown:
 
-Allen Tsang:
+	Allen Tsang:
+		
+		- Database reconstruction
+		- Equity query
+		- Git Master
+		- Overall helper for everyone
+
+	Carson Roscoe:
+		
+		- UI
+		- Controllers
+		- PHP intergration with UI
+
+	Jaegar Sarauer:
+
+		- Queries needed for UI
+		- Populated UI elements
+		- Half of Models
+
+	Dhivya Manohar:
+
+		- Half of Models
+		- Help with PHP intergration with UI
+		- Login
 	
-	- Database reconstruction
-	- Equity query
-	- Git Master
-	- Overall helper for everyone
+Accomplishments:
 
-Carson Roscoe:
+	- Base Controller & master template		DONE
+	- Homepage & dashboard view				DONE
+	- Stock list controller & view			DONE
+	- Portfolio controller & view			DONE
+	- Aesthetics & consistency				DONE
+	- Reasonable process					DONE
+	- Comments & programming style			DONE
+
 	
-	- UI
-	- Controllers
-	- PHP intergration with UI
 
-Jaegar Sarauer:
 
-	- Queries needed for UI
-	- Populated UI elements
-	- Half of Models
-
-Dhivya Manohar:
-
-	- Half of Models
-	- Help with PHP intergration with UI
-	- Login
 
