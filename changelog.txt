@@ -1,6 +1,6 @@
 Date/Time						What happened
 
-<<<<<<< HEAD
+Feb 19, 4:57pm                  Fixed profile accessing, added links to profiles on main page
 Feb 19, 4:36pm                  Finished profile queries
 Feb 19, 4:26pm                  Changed all the _GET to _POST
 Feb 19, 4:16pm					Login prompt for profile and bug fixes
