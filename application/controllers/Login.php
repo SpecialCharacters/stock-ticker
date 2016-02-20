@@ -12,18 +12,18 @@ class Login extends Application {
     public function index(){
     }
     
-    public function loginAttempt($username = 'hi', $password = 'lol') {
+    public function loginAttempt() {
         if (isset($_GET['username']) && isset($_GET['password'])) {
             if(!$this->setNavBarLogin($_GET['username'],$_GET['password'])) {
                 echo '<script>alert("Invalid username and password combination.")</script>';
-                redirect('welcome', 'refresh');
+                redirect('/', 'refresh');
             }
         } else {
             $this->setNavBarLogout();
         }
     }
     
-    public function queryLogin($username, $password){
+    public function queryLogin($username, $password) {
         $this -> db -> select('username, firstname,password');
         $this -> db -> from('players');
         $this -> db -> where('username', $username);

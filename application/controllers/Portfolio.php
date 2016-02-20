@@ -10,6 +10,8 @@ class Portfolio extends Application {
             $realName = ($name === NULL)? $this->session->userdata('logged_in') : $name;
             if ($realName === NULL) {
                 //handle nobody logged in and no profile username request
+				echo '<script>alert("Please log in first.")</script>';
+                redirect('/', 'refresh');
             }
             
             $this->data['pagebody'] = 'twotablepage';//new DBQuery().getDatabaseData();//'index';
