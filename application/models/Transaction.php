@@ -5,14 +5,14 @@
  *
  * Transaction model
  *
- * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
- * @copyright           2016-, Special Characters
+ * @author				Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright			2016-, Special Characters
  * ------------------------------------------------------------------------
  */
 
 class Transaction extends MY_Model {    
     /**
-     * Constructor.
+     * Constructor
      * @param string $tablename Name of the database table
      * @param string $keyfield  Name of the primary key of the table
      */
@@ -33,7 +33,7 @@ class Transaction extends MY_Model {
 
         while($index > 0) {
             $tmpRes = array();
-                if ($res{$index}->code === $code) {
+			if ($res{$index}->code === $code) {
                 $name = $this->players->getPlayerNamesByUsername($res{$index}->username);
                 array_push($tmpRes, $res{$index}->username, $name[0] . ' ' . $name[1], $res{$index}->amount, $res{$index}->type, $res{$index}->datetime);
                 array_push($newRes, $tmpRes);
