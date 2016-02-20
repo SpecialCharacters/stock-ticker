@@ -29,7 +29,7 @@ class Welcome extends Application {
             
             //set right table with data from query
             $this->data['rightTableColumns'] = $this->createTableColumns(['Name', 'Equity', 'Cash']);
-            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile');			
+            $this->data['rightTableQuery'] = $this->parseQueryClickable($this->players->getPlayers(), 'profile', 1);
             
             $this->render();
 	}        

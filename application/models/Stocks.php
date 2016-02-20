@@ -59,4 +59,9 @@ class Stocks extends MY_Model {
         }
         return $newRes;
     }
+    
+    function getStockPrice($code) {
+        $res = $this->some('code', $code);
+        return $res{0}->stockvalue;
+    }
 }

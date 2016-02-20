@@ -47,7 +47,7 @@ class Players extends MY_Model {
         $newRes = array();
         foreach($res as $queryIndex) {
             $tmpRes = array();
-            array_push($tmpRes, $queryIndex->firstname . ' ' . $queryIndex->lastname, $this->calcEquity($queryIndex->username), $queryIndex->cash);
+            array_push($tmpRes, $queryIndex->username, $queryIndex->firstname . ' ' . $queryIndex->lastname, $this->calcEquity($queryIndex->username), $queryIndex->cash);
             array_push($newRes, $tmpRes);
         }
         return $newRes;

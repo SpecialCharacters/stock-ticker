@@ -17,11 +17,10 @@ class Portfolio extends Application {
 	 */
 	public function index($name = null)
 	{ 
-            //checking to see if logged in, otherwise redirect
-            $realName = ($name === NULL)? $this->session->userdata('logged_in') : $name;
-            
-             //handle nobody logged in and no profile username request
-            if ($realName === NULL) {               
+
+            $realName = ($name === NULL)? $this->session->userdata('logged_in')['username'] : $name;
+            if ($realName === NULL) {
+                //handle nobody logged in and no profile username request
 		echo '<script>alert("Please log in first.")</script>';
                 redirect('/', 'refresh');
             }
