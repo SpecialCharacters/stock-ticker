@@ -55,9 +55,8 @@ $route['profile/(:any)'] = 'portfolio/index/$1';
 $route['profile'] = 'portfolio';
 
 $route['stock/(:any)'] = 'stock/index/$1';
-$route['stock'] = 'stock';
 
-$route['login'] = 'login/loginAttempt';//'login/loginAttempt/$1/$2';
+$route['login'] = 'login/loginAttempt';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
