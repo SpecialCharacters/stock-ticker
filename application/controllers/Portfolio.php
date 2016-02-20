@@ -31,7 +31,6 @@ class Portfolio extends Application {
             $this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
             
             $fullName = $this->players->getPlayerNamesByUsername($realName); //query players          
-            
 
             $this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
 
