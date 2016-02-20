@@ -1,6 +1,6 @@
 Date/Time						What happened
 
-
+Feb 19, 6:40pm                                  Added README.txt
 Feb 19, 6:00pm                                  Commented rest of the code - models & views
 Feb 19, 5:26pm                                  Commented base controller/model and controllers
 Feb 19, 4:57pm                                  Fixed profile accessing, added links to profiles on main page

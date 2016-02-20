@@ -1,0 +1,43 @@
+Link:
+
+https://github.com/SpecialCharacters/stock-ticker
+
+
+Notes:
+
+- We have created our own database called 'stockticker'. It's under the data folder.
+
+- Use (for test case):
+
+	username: don123	password: 12345
+	username: hen123	password: password
+	username: mick123	password: sarauer
+
+
+Tasks Breakdown:
+
+Allen Tsang:
+	
+	- Database reconstruction
+	- Equity query
+	- Git Master
+	- Overall helper for everyone
+
+Carson Roscoe:
+	
+	- UI
+	- Controllers
+	- PHP intergration with UI
+
+Jaegar Sarauer:
+
+	- Queries needed for UI
+	- Populated UI elements
+	- Half of Models
+
+Dhivya Manohar:
+
+	- Half of Models
+	- Help with PHP intergration with UI
+	- Login
+
