@@ -22,4 +22,15 @@ class Playerstocks extends MY_Model2 {
         }
         return $newRes;
     }
+    
+    function getPlayerStocksAndNames($name) {
+        $res = $this->getPlayerStocks($name);
+        $newRes = array();
+        foreach($res as $queryIndex) {
+            $tmpRes = array();
+            array_push($tmpRes, $queryIndex[0], $this->stocks->getStockByCode($queryIndex[0])[0], $queryIndex[0], $queryIndex[1]);
+            array_push($newRes, $tmpRes);
+        }
+        return $newRes;
+    }
 }

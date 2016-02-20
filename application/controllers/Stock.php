@@ -16,7 +16,7 @@ class Stock extends Application {
             
             
             $fullName = $this->stocks->getStockByCode($realName);
-            $this->data['contentTitle'] = $fullName[0][0] . ' [' . $fullName[0][1] . ']';
+            $this->data['contentTitle'] = $fullName[0] . ' [' . $fullName[1] . ']';
             
             $this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
             $this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($realName));
