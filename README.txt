@@ -6,6 +6,8 @@ https://github.com/SpecialCharacters/stock-ticker
 Notes:
 
 - We have created our own database called 'stockticker'. It's under the data folder.
+- We kept a changelog of progress as we went.  It can be found in the main directory
+  as changelog.txt.
 
 - Use (for test case):
 
@@ -50,8 +52,4 @@ Accomplishments:
 	- Aesthetics & consistency				DONE
 	- Reasonable process					DONE
 	- Comments & programming style			DONE
-
-	
-
-
 

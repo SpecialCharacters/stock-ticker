@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Feb 19, 7:25pm					Edited README.txt
 Feb 19, 7:20pm					Comment review and code formatting
 Feb 19, 6:40pm					Added README.txt
 Feb 19, 6:00pm					Commented rest of the code - models & views
