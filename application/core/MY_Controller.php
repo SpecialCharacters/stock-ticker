@@ -88,12 +88,12 @@ class Application extends CI_Controller {
         $result = '<div id="loginDiv">';
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-            $result .= '<form id="loginForm" action="/login">
+            $result .= '<form id="loginForm" method="post" action="/login">
                 Logged in as '.$session_data['username'].'<br>
                 <input type="submit" value="Loggout">
             </form>';  
         } else {
-            $result .= '<form id="loginForm" action="/login">
+            $result .= '<form id="loginForm" method="post"action="/login">
                 Username:<br>
                 <input type="text" name="username"><br>
                 Password:<br>

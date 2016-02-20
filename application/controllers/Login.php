@@ -13,8 +13,9 @@ class Login extends Application {
     }
     
     public function loginAttempt() {
-        if (isset($_GET['username']) && isset($_GET['password'])) {
-            if(!$this->setNavBarLogin($_GET['username'],$_GET['password'])) {
+
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            if(!$this->setNavBarLogin($_POST['username'],$_POST['password'])) {
                 echo '<script>alert("Invalid username and password combination.")</script>';
                 redirect('/', 'refresh');
             }
