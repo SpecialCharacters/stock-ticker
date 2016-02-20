@@ -13,17 +13,18 @@ class Login extends Application {
     }
     
     public function loginAttempt() {
+
         if (isset($_POST['username']) && isset($_POST['password'])) {
             if(!$this->setNavBarLogin($_POST['username'],$_POST['password'])) {
                 echo '<script>alert("Invalid username and password combination.")</script>';
-                redirect('welcome', 'refresh');
+                redirect('/', 'refresh');
             }
         } else {
             $this->setNavBarLogout();
         }
     }
     
-    public function queryLogin($username, $password){
+    public function queryLogin($username, $password) {
         $this -> db -> select('username, firstname,password');
         $this -> db -> from('players');
         $this -> db -> where('username', $username);
