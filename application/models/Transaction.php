@@ -1,17 +1,30 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * model/Transaction.php
+ *
+ * Transaction model
+ *
+ * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright           2016-, Special Characters
+ * ------------------------------------------------------------------------
  */
 
-class Transaction extends MY_Model {
-    
+class Transaction extends MY_Model {    
+    /**
+     * Constructor.
+     * @param string $tablename Name of the database table
+     * @param string $keyfield  Name of the primary key of the table
+     */
     function __construct() {
         parent::__construct('transactions','transactionID');
     }
     
+    /**
+     * Get list of transactions by stock code
+     * @param type $code stock code
+     * @return list of transactions
+     */
     function getTransactionByCode($code) {
         $res = $this->all();
         $newRes = array();
@@ -30,6 +43,11 @@ class Transaction extends MY_Model {
         return $newRes;
     }
     
+    /**
+     * Get list of transactions by user name
+     * @param type $name player user name
+     * @return array list of transaction
+     */
     function getTransactionByUsername($name) {
         $res = $this->some('username', $name);
         $newRes = array();

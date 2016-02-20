@@ -1,18 +1,32 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * model/Players.php
+ *
+ * Player model
+ *
+ * @author		Jaegar Sarauer, Allen Tsang, Dhivya Manohar
+ * @copyright           2016-, Special Characters
+ * ------------------------------------------------------------------------
  */
 
 
 class Players extends MY_Model {
     
+    /**
+     * Constructor.
+     * @param string $tablename Name of the database table
+     * @param string $keyfield  Name of the primary key of the table
+     */
     function __construct() {
         parent::__construct('players','username');
     }
     
+    /**
+     * Calculates the equity after querying the right data
+     * @param type $username of player
+     * @return int equity amount
+     */    
     function calcEquity($username) {
         $res = $this->playerstocks->getPlayerStocks($username);
         $total = 0;
@@ -24,6 +38,10 @@ class Players extends MY_Model {
         return $total;
     }
     
+    /**
+     * Get all players that are in the database
+     * @return array all players
+     */
     function getPlayers() {
         $res = $this->all();
         $newRes = array();
@@ -35,6 +53,10 @@ class Players extends MY_Model {
         return $newRes;
     }
     
+    /**
+     * Get all player names (first and last)
+     * @return array players names (first and last)
+     */
     function getPlayersNames() {
         $res = $this->all();
         $newRes = array();
@@ -46,6 +68,11 @@ class Players extends MY_Model {
         return $newRes;
     }
     
+    /**
+     * Get all player names by username
+     * @param type $username of player
+     * @return type array of all players
+     */
     function getPlayerNamesByUsername($username) {
         $res = $this->some('username', $username);
         $retName = array($res[0]->firstname, $res[0]->lastname);
