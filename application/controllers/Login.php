@@ -1,76 +1,94 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * controllers/Login.php
+ *
+ * Login controller
+ *
+ * @author				Dhivya Manohar
+ * @copyright			2016-, Special Characters
+ * ------------------------------------------------------------------------
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends Application {     
-    public function index(){
-    }
-    
-    public function loginAttempt($username = 'hi', $password = 'lol') {
-        if (isset($_GET['username']) && isset($_GET['password'])) {
-            if(!$this->setNavBarLogin($_GET['username'],$_GET['password'])) {
+
+    /**
+     * Attempt to login
+     * @param type $username user input 
+     * @param type $password user input
+     */
+    public function loginAttempt() {        
+        //if able to get username
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            //if user name and password are invalid
+            if(!$this->setNavBarLogin($_POST['username'],$_POST['password'])) {
                 echo '<script>alert("Invalid username and password combination.")</script>';
-                redirect('welcome', 'refresh');
+                redirect('/', 'refresh');
             }
         } else {
-            $this->setNavBarLogout();
+            $this->setNavBarLogout();//sucessfully found user name & password combonation
         }
     }
     
-    public function queryLogin($username, $password){
-        $this -> db -> select('username, firstname,password');
+    /**
+     * Check login data against database
+     * @param type $username user name to query
+     * @param type $password password to query
+     * @return boolean return false if unable to find a row that matches
+     *          description
+     */
+    public function queryLogin($username, $password) {
+        //database query
+        $this -> db -> select('username, firstname, password');
         $this -> db -> from('players');
         $this -> db -> where('username', $username);
         $this -> db -> where('password', $password);
+        
+        $result = $this-> db -> get();//return results found
 
-        $result = $this-> db ->get();
-
-        if($result -> num_rows() == 1){
+        //handle condition of result
+        if($result -> num_rows() == 1) {
             return $result->result();
-        }
-        else{
+        } else {
             return false;
         }
-    }
-        
+   }
+   
+    /**
+     * Setting the session variable according to conditions
+     * @param type $username user name 
+     * @param type $password password
+     * @return boolean return false if not logged in
+     */
     public function setNavBarLogin($username,$password){
         $result = $this->queryLogin($username,$password);
 
-        if($result)
-        {
-            //however we want to set the navbar if they are successful
+        if($result) {
             $sess_array = array();
-            foreach($result as $row)
-            {
+            //go through the result and set session variable with data
+            foreach($result as $row) {
                 $sess_array = array(
                     'username' => $row->username,
                     'firstname' => $row->firstname
                 );
             }
             $this->session->set_userdata('logged_in', $sess_array);
-            redirect('welcome', 'refresh'); //just to test if it works
+            
+            redirect('/', 'refresh');//if logged in, refresh to welcome page
             return true;
-        }else{
-            //how ever we want to set the navbar if they type in a wrong password
-            //$this->form_validation->set_message('check database', 'invalid password');
+        } else {
             return false;
         }
     }
-        
-    public function setNavBarLogout(){
+    
+    /**
+     * Logout function (clears session variable)
+     */
+    public function setNavBarLogout() {
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        redirect('welcome', 'refresh');
+        redirect('/', 'refresh'); //redirects to welcome page after logout
     }
 }
-
-
-
-
-

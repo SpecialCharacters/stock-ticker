@@ -6,8 +6,8 @@ if (!defined('BASEPATH'))
 /**
  * Generic data access abstraction.
  *
- * @author		Dhivya Manohar & Allen Tsang
- * @copyright           Copyright (c) 2016-forever, Special Charcaters
+ * @author		Dhivya Manohar
+ * @copyright           Copyright (c) 2016-, Special Charcaters
  * ------------------------------------------------------------------------
  */
 interface Active_record {
