@@ -41,7 +41,7 @@ class Movement extends MY_Model {
         } else {
             $data = fgetcsv($site, 1024, ',', '"');
             while($data != false) {
-                $result[] = array($data[0], $data[1], $data[2], $data[3], $data[4]);
+                $result[] = array($data[0], $this->millisecondsToDatetime($data[1]), $data[2], $data[3], $data[4]);
                 $data = fgetcsv($site, 1024, ',', '"');
             }
             fclose($site);
@@ -60,7 +60,7 @@ class Movement extends MY_Model {
             $data = fgetcsv($site, 1024, ',', '"');
             while($data !== false) {
                 if($data[2] == $code) {
-                    $movements[] = array($data[1], $data[3], $data[4]);
+                    $movements[] = array($this->millisecondsToDatetime($data[1]), $data[3], $data[4]);
                 }
                 $data = fgetcsv($site, 1024, ',', '"');
             }

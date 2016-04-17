@@ -38,7 +38,6 @@ class Transaction extends MY_Model {
             $rowCounter = 0;
             $data = fgetcsv($site, 0, ",");
             while ($data != FALSE) {
-                var_dump($data);
                 if( 0 === $rowCounter) {
                     $columns = $data;
                 } else {
@@ -55,7 +54,7 @@ class Transaction extends MY_Model {
         for ($i = 0; $i < count($rows); $i ++) {
             if($rows[$i]["stock"] == $code) {
                 $tmpRes = array();
-                array_push($tmpRes, $rows[$i]["player"], "Player Name", $rows[$i]["quantity"], $rows[$i]["trans"], $rows[$i]["datetime"]);
+                array_push($tmpRes, $rows[$i]["player"], $rows[$i]["player"], $rows[$i]["quantity"], $rows[$i]["trans"], $this->millisecondsToDatetime($rows[$i]["datetime"]));
                 array_push($newRes, $tmpRes);
             }
         }
@@ -68,13 +67,38 @@ class Transaction extends MY_Model {
      * @return array list of transaction
      */
     function getTransactionByUsername($name) {
-        $res = $this->some('username', $name);
+        $columns = array();
+        $rows = array();
         $newRes = array();
-        foreach($res as $queryIndex) {
-            $tmpRes = array();
-            array_push($tmpRes, $queryIndex->code, $this->stocks->getStockByCode($queryIndex->code)[0], $queryIndex->amount, $queryIndex->type, $queryIndex->datetime);
-            array_push($newRes, $tmpRes);
+        $site = fopen($this->url, "r");
+        if($site == FALSE) {
+            echo "failed to open";
+            return $newRes;
+        } else {
+            $rowCounter = 0;
+            $data = fgetcsv($site, 0, ",");
+            while ($data != FALSE) {
+                if( 0 === $rowCounter) {
+                    $columns = $data;
+                } else {
+                    foreach($data as $key => $value) {
+                            $rows[ $rowCounter - 1][ $columns[ $key] ] = $value;
+                    }
+                }
+                $rowCounter++;
+                $data = fgetcsv($site, 0, ",");
+            }
+            fclose($site);
+        }
+        
+        for ($i = 0; $i < count($rows); $i ++) {
+            if($rows[$i]["player"] == $name) {
+                $tmpRes = array();
+                array_push($tmpRes, $rows[$i]["stock"], $rows[$i]["stock"], $rows[$i]["quantity"], $rows[$i]["trans"], $this->millisecondsToDatetime($rows[$i]["datetime"]));
+                array_push($newRes, $tmpRes);
+            }
         }
         return $newRes;
     }
+   
 }
