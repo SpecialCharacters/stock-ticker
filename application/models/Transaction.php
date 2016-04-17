@@ -100,5 +100,4 @@ class Transaction extends MY_Model {
         }
         return $newRes;
     }
-   
 }
