@@ -1,5 +1,9 @@
 Date/Time						What happened
 
+April 16, 11:30am                               Fixed all timestamps to work with human time from unix
+April 16, 11:15am                               Transaction data swapped tow ork with server from database
+April 16, 10:30am                               Movement data swapped to work with server from database
+April 16, 7:00pm                                Stocks data swapped to work with server from database
 Feb 19, 7:25pm					Edited README.txt
 Feb 19, 7:20pm					Comment review and code formatting
 Feb 19, 6:40pm					Added README.txt
