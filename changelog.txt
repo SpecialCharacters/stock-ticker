@@ -1,5 +1,6 @@
 Date/Time						What happened
 
+Apr 16, 9:36pm					Bootstrapped and redesigned visuals of website
 Apr 16, 6:50pm					Refactored navigation bar code
 Feb 19, 7:25pm					Edited README.txt
 Feb 19, 7:20pm					Comment review and code formatting
