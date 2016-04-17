@@ -74,8 +74,9 @@ class Players extends MY_Model {
      * @return type array of all players
      */
     function getPlayerNamesByUsername($username) {
-        $res = $this->some('username', $username);
-        $retName = array($res[0]->firstname, $res[0]->lastname);
-        return $retName;
+        //$res = $this->some('username', $username);
+        //$retName = array($res[0]->firstname, $res[0]->lastname);
+        //return $retName;
+        return $username;
     }
 }

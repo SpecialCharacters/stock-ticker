@@ -12,7 +12,7 @@
 class Application extends CI_Controller {
 
     protected $data = array();      // parameters for view components
-    protected $id;		  // identifier for our content
+    protected $id;    // identifier for our content
     protected $choices = array(// controllers choices
 	'Homepage' => '/', 'Profile' => '/profile', 'Stock' => '/stock'
     );
@@ -22,10 +22,14 @@ class Application extends CI_Controller {
      * Establish view parameters & load common helpers
      */
     function __construct() {
+
 	parent::__construct();
 	$this->data = array();
 	$this->data['pagetitle'] = "StockWatch";
 	$this->data['pageheader'] = "StockWatch";
+	$this->data['bootstrapStyle'] = base_url("assets/css/bootstrap.css");
+	$this->data['jQueryScript'] = base_url("assets/js/jquery-2.2.3.min.js");
+	$this->data['bootstrapScript'] = base_url("assets/js/bootstrap.js");
     }
 
     /**
@@ -33,8 +37,17 @@ class Application extends CI_Controller {
      * Used on all. We need to load data into content in the controller
      */
     function render() {
+
 	$this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
 	$this->data['data'] = &$this->data;
+	if ($this->session->userdata('logged_in')) {
+	    $session_data = $this->session->userdata('logged_in');
+	    $this->data['username'] = $session_data['username'];
+	    $this->data['loginForm'] = $this->parser->parse('loggedin', $this->data, true);
+	} else {
+	    $this->data['loginForm'] = $this->parser->parse('loggedout', $this->data, true);
+	}
+	$this->data['navigation'] = $this->parser->parse('_navbar', $this->data, true);
 	$this->parser->parse('_template', $this->data);
     }
 
@@ -45,6 +58,7 @@ class Application extends CI_Controller {
      * @return string parsed data
      */
     function parseQuery($queryData, $ignoreIndex = -1) {
+
 	$res = '';
 
 	if ($queryData == NULL) {
@@ -91,31 +105,29 @@ class Application extends CI_Controller {
      * @return string the html to be printed to screen
      */
     protected function createNavigation($page) {
-	$result = '<div id="loginDiv">';
-	if ($this->session->userdata('logged_in')) {
-	    $session_data = $this->session->userdata('logged_in');
-	    $result .= '<form id="loginForm" method="post" action="/login">
-                Logged in as ' . $session_data['username'] . '<br>
-                <input type="submit" value="Logout">
-            </form>';
-	} else {
-	    $result .= '<form id="loginForm" method="post"action="/login">
-                Username:<br>
-                <input type="text" name="username"><br>
-                Password:<br>
-                <input type="password" name="password"><br>
-                <input type="submit" value="Login">
-            </form>';
+	$result = '';
+	switch ($page) {
+	    case 1:
+		$result .= '<li class="active"><a href="/">Homepage</a></li>';
+		$result .= '<li><a href="/profile">Profile</a></li>';
+		$result .= '<li><a href="/stock">Stock</a></li>';
+		break;
+	    case 2:
+		$result .= '<li><a href="/">Homepage</a></li>';
+		$result .= '<li class="active"><a href="/profile">Profile</a></li>';
+		$result .= '<li><a href="/stock">Stock</a></li>';
+		break;
+	    case 3:
+		$result .= '<li><a href="/">Homepage</a></li>';
+		$result .= '<li><a href="/profile">Profile</a></li>';
+		$result .= '<li class="active"><a href="/stock">Stock</a></li>';
+		break;
+	    default:
+		$result .= '<li><a href="/">Homepage</a></li>';
+		$result .= '<li><a href="/profile">Profile</a></li>';
+		$result .= '<li><a href="/stock">Stock</a></li>';
+		break;
 	}
-
-	$result .= '</div><div id="pageSelection"><ul>';
-
-	$result .= '<li><a href="/">Homepage</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/stock">Stock</a></li>';
-
-	$result .= '</ul></div>';
-
 	return $result;
     }
 

@@ -29,11 +29,11 @@ class Portfolio extends Application {
 	    redirect('/', 'refresh');
 	}
 
-	$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
-	$this->data['navigation'] = $this->createNavigation(2); //create navigation bar
-	$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down        
+	$this->data['pageheader'] = $realName . "'s Profile";
 
-	
+	$this->data['links'] = $this->createNavigation(2); //create navigation bar - MY_CONTROLLER.php   
+	$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
+	$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
 	//populating tables with data from query
 	$this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Amount']);
 	$this->data['leftTableQuery'] = $this->parseQueryClickable($this->playerstocks->getPlayerStocksAndNames($realName), 'stock', 1);

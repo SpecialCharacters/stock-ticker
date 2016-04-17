@@ -2,13 +2,42 @@ body{
     background-color:#6F7C7F;
     color:#333333;
     font-family:Calibri;
-    margin:0;
 }
 
+#header {
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .home-login, #home-nav-page {
+        text-align: center;
+        width: 98%;
+      margin:auto;
+      display:block;
+    }
+}
+@media (min-width: 768px) {
+    .home-login, #home-nav-page {
+        text-align: center;
+        width: 50%;
+      margin:auto;
+      display:block;
+    }
+}
+
+#body {
+    margin: 20px;
+    margin-top: 70px;
+}
+/*
 #header{
     width:100vw;
-}
+}*/
 
+#pageHeader {
+    margin: 0px;
+}
+/*
 h1{
     color:white;
 }
@@ -17,7 +46,7 @@ h2 {
     text-align:center;
     color:#6F7C7F;
 }
-
+*/
 a{
     text-decoration:none;
     color:white;
@@ -35,7 +64,7 @@ a:active{
     color:black;
     background-color:black;
 }
-
+/*
 #navigation ul{
     list-style-type:none;
     padding-left:20px;
@@ -55,11 +84,10 @@ a:active{
 #navigation a{
     color:inherit;
     text-decoration:none;
-}
-
+}*/
+/*
 #content{
     padding:0px 20px 0px 20px;
-    margin-left:208px;
     margin-bottom:10px;
     height:auto;
     position:absolute;
@@ -69,7 +97,7 @@ a:active{
     bottom:0px;
     background-color:white;
 }
-
+*/
 #content p{
     margin-left:20px;
 }
@@ -82,6 +110,7 @@ a:active{
    width:100%;
    padding-left:20px;
 }
+/*
 
 #leftTable {
     width:100%;
@@ -116,20 +145,43 @@ a:active{
     border-top: solid #6F7C7F;
     height:84%;
 }
+*/
 
-#loginDiv {
-    border: solid #d3d3d3;
+#leftTable {
+    width:100%;
+    height:auto;
     float:left;
-    background-color: #F5F5F5;
-    margin-left:1.5%;
 }
+
+#titleTable {
+    width:100%;
+    height:auto;
+}
+
+#leftTableDiv{
+    margin-top:1%;
+    height:100%;
+    width:49%;
+    float:left;
+    margin-right:1%;
+}
+
+#rightTableDiv{
+    margin-top:1%;
+    height:100%;
+    width:49%;
+    float:right;
+    margin-left:1%;
+}
+
+#TableDiv {
+    border-top: solid #6F7C7F;
+    height:84%;
+}
+
 
 #pageSelection {
     padding-top:8%;
-}
-
-#loginForm {
-    margin:5%;
 }
 
 #clickable {
@@ -167,4 +219,9 @@ tr:nth-child(even) {
 
 li {
     color:white;
+}
+
+#minimal-nav-text {
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
