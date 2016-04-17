@@ -22,11 +22,12 @@ class Portfolio extends Application {
 			echo '<script>alert("Please log in first.")</script>';
 			redirect('/', 'refresh');
 		}
+                
+                $this->data['pageheader'] = $realName . "'s Profile";
 		
+		$this->data['links'] = $this->createNavigation(2);//create navigation bar - MY_CONTROLLER.php   
 		$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
-		$this->data['navigation'] = $this->createNavigation(2); //create navigation bar
 		$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
-		
 		$fullName = $this->players->getPlayerNamesByUsername($realName); //query players          
 
 		$this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title

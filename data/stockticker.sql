@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `players` (
     `lastname` varchar(30) NOT NULL,
     `password` varchar(30) NOT NULL,
     `cash` int(10) NOT NULL,
+	`role` varchar(10) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,11 +46,12 @@ CREATE TABLE IF NOT EXISTS `players` (
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`username`, `firstname`, `lastname`, `password`, `cash`) VALUES
-('mick123','Mickey','Jaggar', 'sarauer', 1000),
-('don123','Donald', 'Trumper', '12345', 3000),
-('geo123','George','Bushy', '420blazeit', 2000),
-('hen123','Henry','Thirdy', 'password', 2500);
+INSERT INTO `players` (`username`, `firstname`, `lastname`, `password`, `cash`, `role`) VALUES
+('admin', 'Jim', 'Parry', 'jlparry', 1000000, 'admin'),
+('mick123','Mickey','Jaggar', 'sarauer', 1000, 'user'),
+('don123','Donald', 'Trumper', '12345', 3000, 'user'),
+('geo123','George','Bushy', 'testpass', 2000, 'user'),
+('hen123','Henry','Thirdy', 'password', 2500, 'user');
 
 -- --------------------------------------------------------
 
