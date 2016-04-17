@@ -40,6 +40,14 @@ class Application extends CI_Controller {
     function render() {
         $this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
         $this->data['data'] = &$this->data;
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$this->data['username'] = $session_data['username'];
+			$this->data['loginForm'] = $this->parser->parse('loggedin', $this->data, true);
+		} else {
+			$this->data['loginForm'] = $this->parser->parse('loggedout', $this->data, true);
+		}
+		$this->data['navigation'] = $this->parser->parse('_navbar', $this->data, true);
         $this->parser->parse('_template', $this->data);
     }
     
@@ -50,22 +58,22 @@ class Application extends CI_Controller {
      * @return string parsed data
      */
     function parseQuery($queryData, $ignoreIndex = -1) {
-            $res = '';
-            
-            if ($queryData == NULL) {
-                return '';
-            }
-            
-            foreach($queryData as $queryIndex) {
-                $res .= '<tr>';
-                for ($index = 0; $index < count($queryIndex); $index++) {
-                    if ($ignoreIndex !== $index) {
-                        $res .= '<td>' . $queryIndex[$index] . '</td>';
-                    }
-                }
-                $res .= '</tr>';
-            }
-            return $res;
+		$res = '';
+		
+		if ($queryData == NULL) {
+			return '';
+		}
+		
+		foreach($queryData as $queryIndex) {
+			$res .= '<tr>';
+			for ($index = 0; $index < count($queryIndex); $index++) {
+				if ($ignoreIndex !== $index) {
+					$res .= '<td>' . $queryIndex[$index] . '</td>';
+				}
+			}
+			$res .= '</tr>';
+		}
+		return $res;
     }
     
         function parseQueryClickable($queryData, $linkto, $IgnoreIndex = 0) {
@@ -96,51 +104,32 @@ class Application extends CI_Controller {
      * @return string the html to be printed to screen
      */
     protected function createNavigation($page) {
-        $counter = 1;
-        
-        $result = '<div id="loginDiv">';
-        if ($this->session->userdata('logged_in')) {
-            $session_data = $this->session->userdata('logged_in');
-            //$this->data['loginForm'] = '<p class="navbar-text">Welcome, '.$session_data['username'].'!</p>';
-
-            $this->data['loginForm'] = '<form class="navbar-form navbar-left" role="search" id="loginForm" method="post"action="/login">
-                <div class="navbar-text" id="minimal-nav-text">Welcome, ' . $session_data['username'] . '!</div>
-                <button type="submit" value="Submit" class="btn btn-default">Log Out</button>
-            </form>';  
-
-            if ($page === 1) {
-                $this->data['navLinks'] = '<li class="active"><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/stock">Stock</a></li>';
-            } else if ($page === 2) {
-                $this->data['navLinks'] = '<li><a href="/">Homepage</a></li>
-                <li class="active"><a href="/profile">Profile</a></li>
-                <li><a href="/stock">Stock</a></li>';
-            } else if ($page === 3) {
-                $this->data['navLinks'] = '<li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li class="active"><a href="/stock">Stock</a></li>';
-            }
-        } else {
-            $this->data['loginForm'] = '
-                    <form class="navbar-form navbar-left" role="search" id="loginForm" method="post"action="/login">
-                        <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="Username">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                        </div>
-                        <button type="submit" name="Submit" value="Submit" class="btn btn-default">Login</button>
-                        <button type="submit" name="Submit" value="Register" class="btn btn-default">Register</button>
-                  </form>';
-       $this->data['navLinks'] = '<div class="navbar-text">Please login or register to browse the website.</div>';
+        $result = '';
+        switch($page) {
+            case 1:
+                $result .= '<li class="active"><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
+            case 2:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li class="active"><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
+            case 3:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li class="active"><a href="/stock">Stock</a></li>';
+                break;
+            default:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
         }
-       $result .= '</div><div id="pageSelection"><ul>';
-        
-                
-        $result .= '</ul></div>';
-        
         return $result;
     }
-    
+        
     /**
      * Creates a dynamic dropdown list
      * @param type $dropdowndata

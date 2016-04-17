@@ -17,11 +17,13 @@ class Welcome extends Application {
 	 */
 	public function index() { 
 		$this->data['pagebody'] = 'twotablepage';//setting pagebody to be the two table view
-		$this->data['navigation'] = $this->createNavigation(1);//create navigation bar - MY_CONTROLLER.php
 		$this->data['dropdowndata'] = ''; //create drop down - MY_CONTROLLER.php
 		
-                $this->data['pageheader'] = '<div class="jumbotron"><h1>W E L C O M E</h1>';
+		$this->data['links'] = $this->createNavigation(1);//create navigation bar - MY_CONTROLLER.php  
+                $this->data['pageheader'] = 'W E L C O M E';
                 
+		$this->data['contentTitle'] = 'W E L C O M E';//set page title
+		
 		//set left table with data from query            
 		$this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);
 		$this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock', 1);
