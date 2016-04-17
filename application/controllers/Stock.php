@@ -26,7 +26,7 @@ class Stock extends Application {
 
 		//populating tables with data from queries
 		$this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
-		$this->data['leftTableQuery'] = $this->parseQuery($this->movement->getMovementsStock($realName));            
+		$this->data['leftTableQuery'] = $this->parseQuery($this->movement->getRecentMovementsByStock($realName));            
 		
 		$this->data['rightTableColumns'] = $this->createTableColumns(['Player', 'Amount', 'Type', 'Timestamp']);
 		$this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByCode($realName), 'profile', 1);

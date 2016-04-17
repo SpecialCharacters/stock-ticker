@@ -12,6 +12,7 @@
 
 class Stocks extends MY_Model {
     private $url = 'http://bsx.jlparry.com/data/stocks';
+    //Code | Name | Value
     private $stocks = array();
     
     /**
@@ -73,8 +74,7 @@ class Stocks extends MY_Model {
      */
     function getStockPrice($code) {
         $this->getStocksFromServer();
-        $res = $this->some('code', $code);
-        return $res{0}->stockvalue;
+        return $this->getStockByCode($code)[2];
     }
     
     function getStocksFromServer() {
@@ -92,5 +92,15 @@ class Stocks extends MY_Model {
         }
         array_shift($this->stocks);
         return $this->stocks;
+    }
+    
+    function getCodeByName($name) {
+        $this->getStocksFromServer();
+        foreach($this->stocks as $stock) {
+            if ($stock[1] == $name) {
+                return $stock[0];
+            }
+        }
+        return 'N/A';
     }
 }

@@ -11,12 +11,17 @@
  */
 
 class Movement extends MY_Model {
+    public $url = 'http://bsx.jlparry.com/data/movement';
+    //Sequence | Datetime | Code | Action | Amount
+    public $movements = array();
+    private $displayAmount = 10;
     
     /**
      * Constructor
      */
     function __construct() {
         parent::__construct('stockmovements','movementID');
+        $this->getRecentMovements();
     }
     
     /**
@@ -24,20 +29,12 @@ class Movement extends MY_Model {
      * @param type $name name of stock
      * @return array containing movement data
      */
-    function getMovementsStock($name) {
-        $res = $this->some('code', $name);
-        $newRes = array();
-        
-        $index = count($res) - 1;
-        
-        //stores queried data into array
-        while($index > 0) {
-            $tmpRes = array();
-            array_push($tmpRes, $res{$index}->datetime, $res{$index}->action, $res{$index}->amount);
-            array_push($newRes, $tmpRes);
-            $index--;
-        }
-        return $newRes;
+    function getRecentMovementByStockName($name) {
+        /*$code = $this->stocks->getCodeByName($name);
+        echo $code;
+        $result = $this->getRecentMovementsByStock($code);
+        return $result;*/
+        echo $this->getRecentMovementsByStock($name);
     }
     
     /**
@@ -48,5 +45,42 @@ class Movement extends MY_Model {
         $res = $this->all();
         $index = count($res) - 1;
         return $res{$index}->code;
+    }
+    
+    function getRecentMovements() {
+        $result = array();
+        $site = fopen($this->url, 'r');
+        if($site == false)  {
+            return $result;
+        } else {
+            $data = fgetcsv($site, 1024, ',', '"');
+            while($data != false) {
+                $result[] = array($data[0], $data[1], $data[2], $data[3], $data[4]);
+                $data = fgetcsv($site, 1024, ',', '"');
+            }
+            fclose($site);
+        }
+        array_shift($result);
+        $result = array_slice($result, 0, $this->displayAmount);
+        $this->movements = $result;
+        return $result;
+    }
+    function getRecentMovementsByStock($code)
+    {
+        $movements = array();
+        $site = fopen($this->url, 'r');
+        if($site != false) {
+            $data = fgetcsv($site, 1024, ',', '"');
+            while($data !== false) {
+                if($data[2] == $code) {
+                    var_dump($data);
+                    $movements[] = array($data[1], $data[3], $data[4]);
+                }
+                $data = fgetcsv($site, 1024, ',', '"');
+            }
+            fclose($site);
+        }
+        array_shift($movements);
+        return $movements;
     }
 }
