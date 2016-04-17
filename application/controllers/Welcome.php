@@ -20,8 +20,8 @@ class Welcome extends Application {
 		$this->data['navigation'] = $this->createNavigation(1);//create navigation bar - MY_CONTROLLER.php
 		$this->data['dropdowndata'] = ''; //create drop down - MY_CONTROLLER.php
 		
-		$this->data['contentTitle'] = 'W E L C O M E';//set page title
-		
+                $this->data['pageheader'] = '<div class="jumbotron"><h1>W E L C O M E</h1>';
+                
 		//set left table with data from query            
 		$this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);
 		$this->data['leftTableQuery'] = $this->parseQueryClickable($this->stocks->getStocks(), 'stock', 1);

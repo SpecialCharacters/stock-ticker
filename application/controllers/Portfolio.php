@@ -22,6 +22,8 @@ class Portfolio extends Application {
 			echo '<script>alert("Please log in first.")</script>';
 			redirect('/', 'refresh');
 		}
+                
+                $this->data['pageheader'] = '<div class="jumbotron"><h1>' . $realName . "'s Profile </h1>";
 		
 		$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
 		$this->data['navigation'] = $this->createNavigation(2); //create navigation bar
