@@ -44,9 +44,9 @@ class Certificates extends MY_Model {
         return $this->submitPostRequest($data, $this->url['sell']);
     }
     
-    function registerAgent($team, $name, $password) {
-        $data = array('team' => $team, 
-                      'name' => $name,
+    function registerAgent($password) {
+        $data = array('team' => 'O07', 
+                      'name' => 'SpecialCharacters',
                       'password' => $password);
         
         return $this->submitPostRequest($data, $this->url['register']);
@@ -68,7 +68,10 @@ class Certificates extends MY_Model {
         }
 
         //Handle the XML certificate return
-        var_dump($result);
-        return $result;
+        return simplexml_load_file($result);
+    }
+    
+    function getGameState() {
+        return simplexml_load_file("http://bsx.jlparry.com/status");
     }
 }
