@@ -28,6 +28,9 @@ class Application extends CI_Controller {
         $this->data = array();
         $this->data['pagetitle'] = "StockWatch";
         $this->data['pageheader'] = "StockWatch";
+        $this->data['bootstrapStyle'] = base_url("assets/css/bootstrap.css");
+        $this->data['jQueryScript'] = base_url("assets/js/jquery-2.2.3.min.js");
+        $this->data['bootstrapScript'] = base_url("assets/js/bootstrap.js");
     }
 
     /**
@@ -40,9 +43,9 @@ class Application extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$session_data = $this->session->userdata('logged_in');
 			$this->data['username'] = $session_data['username'];
-			$this->data['logstatus'] = $this->parser->parse('loggedin', $this->data, true);
+			$this->data['loginForm'] = $this->parser->parse('loggedin', $this->data, true);
 		} else {
-			$this->data['logstatus'] = $this->parser->parse('loggedout', $this->data, true);
+			$this->data['loginForm'] = $this->parser->parse('loggedout', $this->data, true);
 		}
 		$this->data['navigation'] = $this->parser->parse('_navbar', $this->data, true);
         $this->parser->parse('_template', $this->data);
@@ -73,28 +76,60 @@ class Application extends CI_Controller {
 		return $res;
     }
     
-	function parseQueryClickable($queryData, $linkto, $IgnoreIndex = 0) {
-		$res = '';
-		
-		if ($queryData == NULL) {
-			return '';
-		}
-		
-		foreach($queryData as $queryIndex) {
-			$res .= '<tr>';
-			for ($index = $IgnoreIndex; $index < count($queryIndex); $index++) {
-				$res .= '<td>';
-				if ($index === $IgnoreIndex) {
-					$res .= '<a id="clickable" href="/'. $linkto. '/' . $queryIndex[0] . '">' . $queryIndex[$index] . '</a>';
-				} else {
-					$res .= $queryIndex[$index];
-				}
-				$res .= '</td>';
-			}
-		}
-		return $res;
+        function parseQueryClickable($queryData, $linkto, $IgnoreIndex = 0) {
+            $res = '';
+            
+            if ($queryData == NULL) {
+                return '';
+            }
+            
+            foreach($queryData as $queryIndex) {
+                $res .= '<tr>';
+                for ($index = $IgnoreIndex; $index < count($queryIndex); $index++) {
+                    $res .= '<td>';
+                    if ($index === $IgnoreIndex) {
+                        $res .= '<a id="clickable" href="/'. $linkto. '/' . $queryIndex[0] . '">' . $queryIndex[$index] . '</a>';
+                    } else {
+                        $res .= $queryIndex[$index];
+                    }
+                    $res .= '</td>';
+                }
+            }
+            return $res;
     }
     
+    /**
+     * Creates the dynamic navigation bar
+     * @param type $page which controller you're in
+     * @return string the html to be printed to screen
+     */
+    protected function createNavigation($page) {
+        $result = '';
+        switch($page) {
+            case 1:
+                $result .= '<li class="active"><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
+            case 2:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li class="active"><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
+            case 3:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li class="active"><a href="/stock">Stock</a></li>';
+                break;
+            default:
+                $result .= '<li><a href="/">Homepage</a></li>';
+                $result .= '<li><a href="/profile">Profile</a></li>';
+                $result .= '<li><a href="/stock">Stock</a></li>';
+                break;
+        }
+        return $result;
+    }
+        
     /**
      * Creates a dynamic dropdown list
      * @param type $dropdowndata
