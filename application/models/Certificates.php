@@ -12,6 +12,9 @@
  * @author Carson
  */
 class Certificates extends MY_Model {
+    public $url = array('buy' => 'http://bsx.jlparry.com/buy',
+                        'sell' => 'http://bsx.jlparry.com/sell',
+                        'register' => 'http://bsx.jlparry.com/register');
     
     function __construct() {
         parent::__construct('certificates','certificateID');
@@ -24,23 +27,7 @@ class Certificates extends MY_Model {
                       'stock' => $stock,
                       'quantity' => $quantity);
 
-        $options = array(
-            'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data)
-            )
-        );
-        
-        $context  = stream_context_create($options);
-        $result = file_get_contents($this->buyUrl, false, $context);
-        if ($result === FALSE) { 
-            /* Handle error */ 
-        }
-
-        //Handle the XML certificate return
-        var_dump($result);
-        return $result;
+        return $this->submitPostRequest($data, $this->url['buy']);
     }
     
     function sellStock($team, $token, $player, $stock, $quantity, $certificates) {
@@ -54,16 +41,28 @@ class Certificates extends MY_Model {
             array_push($data, $newArray);
         }
 
+        return $this->submitPostRequest($data, $this->url['sell']);
+    }
+    
+    function registerAgent($team, $name, $password) {
+        $data = array('team' => $team, 
+                      'name' => $name,
+                      'password' => $password);
+        
+        return $this->submitPostRequest($data, $this->url['register']);
+    }
+    
+    function submitPostRequest($array, $url) {
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
                 'method'  => 'POST',
-                'content' => http_build_query($data)
+                'content' => http_build_query($array)
             )
         );
         
         $context  = stream_context_create($options);
-        $result = file_get_contents($this->buyUrl, false, $context);
+        $result = file_get_contents($url, false, $context);
         if ($result === FALSE) { 
             /* Handle error */ 
         }

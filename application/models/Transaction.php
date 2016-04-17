@@ -12,8 +12,6 @@
 
 class Transaction extends MY_Model {    
     public $url = "http://bsx.jlparry.com/data/transactions";
-    public $buyUrl = 'http://bsx.jlparry.com/buy';
-    public $sellURL = 'http://bsx.jlparry.com/sell';
     /**
      * Constructor
      * @param string $tablename Name of the database table
