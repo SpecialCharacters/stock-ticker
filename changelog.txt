@@ -1,7 +1,11 @@
 Date/Time						What happened
 
+Apr 16, 11:30am                                 Fixed all timestamps to work with human time from unix
+Apr 16, 11:15am                                 Transaction data swapped tow ork with server from database
+Apr 16, 10:30am                                 Movement data swapped to work with server from database
 Apr 16, 9:36pm					Bootstrapped and redesigned visuals of website
 Apr 16, 8:50pm					Added roles to database
+Apr 16, 7:00pm                                  Stocks data swapped to work with server from database
 Apr 16, 6:50pm					Refactored navigation bar code
 Feb 19, 7:25pm					Edited README.txt
 Feb 19, 7:20pm					Comment review and code formatting

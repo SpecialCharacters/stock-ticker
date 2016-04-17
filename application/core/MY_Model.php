@@ -263,6 +263,9 @@ class MY_Model extends CI_Model implements Active_Record {
             return null;
     }
 
+    protected function millisecondsToDatetime($milliseconds) {
+        return unix_to_human($milliseconds + 0);
+    }
 }
 
 class MY_Model2 extends MY_Model {

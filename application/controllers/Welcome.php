@@ -16,6 +16,7 @@ class Welcome extends Application {
 	 * Index Page for this controller.
 	 */
 	public function index() { 
+                $this->stocks->getStocksFromServer();
 		$this->data['pagebody'] = 'twotablepage';//setting pagebody to be the two table view
 		$this->data['dropdowndata'] = ''; //create drop down - MY_CONTROLLER.php
 		
