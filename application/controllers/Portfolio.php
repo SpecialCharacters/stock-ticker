@@ -24,9 +24,7 @@ class Portfolio extends Application {
 		}
 		
 		$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
-		$this->data['navigation'] = $this->createNavigation(2); //create navigation bar
 		$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
-		
 		$fullName = $this->players->getPlayerNamesByUsername($realName); //query players          
 
 		$this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
