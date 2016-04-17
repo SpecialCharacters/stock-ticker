@@ -11,6 +11,7 @@
  */
 
 class Transaction extends MY_Model {    
+    public $url = "http://bsx.jlparry.com/data/transactions";
     /**
      * Constructor
      * @param string $tablename Name of the database table
@@ -26,19 +27,37 @@ class Transaction extends MY_Model {
      * @return list of transactions
      */
     function getTransactionByCode($code) {
-        $res = $this->all();
+        $columns = array();
+        $rows = array();
         $newRes = array();
+        $site = fopen($this->url, "r");
+        if($site == FALSE) {
+            echo "failed to open";
+            return $newRes;
+        } else {
+            $rowCounter = 0;
+            $data = fgetcsv($site, 0, ",");
+            while ($data != FALSE) {
+                var_dump($data);
+                if( 0 === $rowCounter) {
+                    $columns = $data;
+                } else {
+                    foreach($data as $key => $value) {
+                            $rows[ $rowCounter - 1][ $columns[ $key] ] = $value;
+                    }
+                }
+                $rowCounter++;
+                $data = fgetcsv($site, 0, ",");
+            }
+            fclose($site);
+        }
         
-        $index = count($res) - 1;
-
-        while($index > 0) {
-            $tmpRes = array();
-			if ($res{$index}->code === $code) {
-                $name = $this->players->getPlayerNamesByUsername($res{$index}->username);
-                array_push($tmpRes, $res{$index}->username, $name[0] . ' ' . $name[1], $res{$index}->amount, $res{$index}->type, $res{$index}->datetime);
+        for ($i = 0; $i < count($rows); $i ++) {
+            if($rows[$i]["stock"] == $code) {
+                $tmpRes = array();
+                array_push($tmpRes, $rows[$i]["player"], "Player Name", $rows[$i]["quantity"], $rows[$i]["trans"], $rows[$i]["datetime"]);
                 array_push($newRes, $tmpRes);
             }
-            $index--;
         }
         return $newRes;
     }

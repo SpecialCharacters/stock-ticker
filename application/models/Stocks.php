@@ -27,7 +27,6 @@ class Stocks extends MY_Model {
      * @return array of all stocks
      */
     function getStocks() {
-        $this->getStocksFromServer();
         $newRes = array();
         foreach($this->stocks as $res) {
             $tmpRes = array();
@@ -43,7 +42,6 @@ class Stocks extends MY_Model {
      * @return array of specified stock's info
      */
     function getStockByCode($code) {
-        $this->getStocksFromServer();
         foreach($this->stocks as $stock) {
             if ($stock[0] == $code) {
                 return $stock;
@@ -57,7 +55,6 @@ class Stocks extends MY_Model {
 	 * @return array of all stocks's code and name
      */
     function getStocksList() {
-        $this->getStocksFromServer();
         $newRes = array();
         foreach($this->stocks as $queryIndex) {
             $tempArray = array();
@@ -73,7 +70,6 @@ class Stocks extends MY_Model {
      * @return type all stocks
      */
     function getStockPrice($code) {
-        $this->getStocksFromServer();
         return $this->getStockByCode($code)[2];
     }
     
@@ -92,15 +88,5 @@ class Stocks extends MY_Model {
         }
         array_shift($this->stocks);
         return $this->stocks;
-    }
-    
-    function getCodeByName($name) {
-        $this->getStocksFromServer();
-        foreach($this->stocks as $stock) {
-            if ($stock[1] == $name) {
-                return $stock[0];
-            }
-        }
-        return 'N/A';
     }
 }

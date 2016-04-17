@@ -14,7 +14,7 @@ class Movement extends MY_Model {
     public $url = 'http://bsx.jlparry.com/data/movement';
     //Sequence | Datetime | Code | Action | Amount
     public $movements = array();
-    private $displayAmount = 10;
+    private $displayAmount = 20;
     
     /**
      * Constructor
@@ -25,26 +25,12 @@ class Movement extends MY_Model {
     }
     
     /**
-     * Gets movements of specified stock
-     * @param type $name name of stock
-     * @return array containing movement data
-     */
-    function getRecentMovementByStockName($name) {
-        /*$code = $this->stocks->getCodeByName($name);
-        echo $code;
-        $result = $this->getRecentMovementsByStock($code);
-        return $result;*/
-        echo $this->getRecentMovementsByStock($name);
-    }
-    
-    /**
      * Gets the code of the most recent stock that moved
      * @return code of the most recent stock that moved
      */
     function getMostRecentCodeMovement() {
-        $res = $this->all();
-        $index = count($res) - 1;
-        return $res{$index}->code;
+        $index = count($this->movements) - 1;
+        return $this->movements[$index][2];
     }
     
     function getRecentMovements() {
@@ -65,6 +51,7 @@ class Movement extends MY_Model {
         $this->movements = $result;
         return $result;
     }
+    
     function getRecentMovementsByStock($code)
     {
         $movements = array();
@@ -73,7 +60,6 @@ class Movement extends MY_Model {
             $data = fgetcsv($site, 1024, ',', '"');
             while($data !== false) {
                 if($data[2] == $code) {
-                    var_dump($data);
                     $movements[] = array($data[1], $data[3], $data[4]);
                 }
                 $data = fgetcsv($site, 1024, ',', '"');
@@ -81,6 +67,7 @@ class Movement extends MY_Model {
             fclose($site);
         }
         array_shift($movements);
+        $movements = array_slice($movements, 0, $this->displayAmount);
         return $movements;
     }
 }

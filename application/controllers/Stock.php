@@ -15,14 +15,15 @@ class Stock extends Application {
 	 * Index Page for this controller.
 	 */
 	public function index($name = null) { 
+                $this->stocks->getStocksFromServer();
 		$realName = ($name === NULL) ? $this->movement->getMostRecentCodeMovement() : $name;
 
 		$this->data['pagebody'] = 'twotablepage';//setting pagebody to be the two table view
 		$this->data['navigation'] = $this->createNavigation(3);//create navigation bar - MY_CONTROLLER.php
 		$this->data['dropdowndata'] = $this->createDropDown($this->stocks->getStocksList(), $realName);//create drop down - MY_CONTROLLER.php            
 		
-		$fullName = $this->stocks->getStockByCode($realName);//query database
-		$this->data['contentTitle'] = $fullName[0] . ' [' . $fullName[1] . '] = $' . $this->stocks->getStockPrice($realName);//set page title        
+		$fullName = $this->stocks->getStockByCode($realName);//query site
+		$this->data['contentTitle'] = $fullName[1] . ' [' . $fullName[0] . '] = $' . $this->stocks->getStockPrice($realName);//set page title        
 
 		//populating tables with data from queries
 		$this->data['leftTableColumns'] = $this->createTableColumns(['Timestamp', 'Action', 'Up/Down']);
