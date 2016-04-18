@@ -53,6 +53,14 @@ class Players extends MY_Model {
         return $newRes;
     }
     
+    function getUsernames() {
+        $players = array();
+        foreach($this->getPlayers() as $player) {
+            array_push($players, $player[0]);
+        }
+        return $players;
+    }
+    
     /**
      * Get all player names (first and last)
      * @return array players names (first and last)
