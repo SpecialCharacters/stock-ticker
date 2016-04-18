@@ -27,8 +27,13 @@ class Welcome extends Application {
 	//$this->stocks->getStocksFromServer();
 	$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
 	$this->data['dropdowndata'] = ''; //create drop down - MY_CONTROLLER.php
+	
+	$userRole = $this->session->userdata('logged_in')['userRole'];
+	if($userRole == ROLE_ADMIN)
+	    $this->data['links'] = $this->createNavigation(4); //create navigation bar - MY_CONTROLLER.php  
+	else if ($userRole == ROLE_PLAYER || !isset($userRole))
+	    $this->data['links'] = $this->createNavigation(1); //create navigation bar - MY_CONTROLLER.php  
 
-	$this->data['links'] = $this->createNavigation(1); //create navigation bar - MY_CONTROLLER.php  
 
 	//set left table with data from query            
 	$this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Value']);

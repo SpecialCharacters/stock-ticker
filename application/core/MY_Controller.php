@@ -122,6 +122,18 @@ class Application extends CI_Controller {
 		$result .= '<li><a href="/profile">Profile</a></li>';
 		$result .= '<li class="active"><a href="/stock">Stock</a></li>';
 		break;
+	    case 4:
+		$result .= '<li><a href="/">Homepage</a></li>';
+		$result .= '<li><a href="/profile">Profile</a></li>';
+		$result .= '<li><a href="/stock">Stock</a></li>';
+		$result .= '<li><a href="/admin">Administration</a></li>';
+		break;
+	    case 5:
+		$result .= '<li><a href="/">Homepage</a></li>';
+		$result .= '<li><a href="/profile">Profile</a></li>';
+		$result .= '<li><a href="/stock">Stock</a></li>';
+		$result .= '<li class="active"><a href="/admin">Administration</a></li>';
+		break;
 	    default:
 		$result .= '<li><a href="/">Homepage</a></li>';
 		$result .= '<li><a href="/profile">Profile</a></li>';
@@ -176,6 +188,7 @@ class Application extends CI_Controller {
 
     function restrict($roleNeeded = null) {
 	$userRole = $this->session->userdata('userRole');
+	var_dump($userRole);
 	if ($roleNeeded != null) {
 	    if (is_array($roleNeeded)) {
 		if (!in_array($userRole, $roleNeeded)) {

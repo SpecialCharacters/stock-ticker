@@ -13,21 +13,25 @@ class Portfolio extends Application {
 
     function __construct() {
 	parent::__construct();
-	$fullName = $this->players->getPlayerNamesByUsername($realName); //query players 
-	$this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
-	$this->restrict(array(ROLE_PLAYER, ROLE_ADMIN));
+	//$this->restrict(array(ROLE_PLAYER, ROLE_ADMIN));
     }
 
     /**
      * Index Page for this controller.
      */
     public function index($name = null) {
+	
+	
 	$realName = ($name === NULL) ? $this->session->userdata('logged_in')['username'] : $name;
 	if ($realName === NULL) {
 	    //handle nobody logged in and no profile username request
 	    echo '<script>alert("Please log in first.")</script>';
 	    redirect('/', 'refresh');
 	}
+	
+	
+	$fullName = $this->players->getPlayerNamesByUsername($realName); //query players 
+	$this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
 
 	$this->data['pageheader'] = $realName . "'s Profile";
 

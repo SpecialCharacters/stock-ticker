@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS `players` (
 
 INSERT INTO `players` (`username`, `firstname`, `lastname`, `password`, `cash`, `role`) VALUES
 ('admin', 'Jim', 'Parry', 'jlparry', 1000000, 'admin'),
-('mick123','Mickey','Jaggar', 'sarauer', 1000, 'user'),
-('don123','Donald', 'Trumper', '12345', 3000, 'user'),
-('geo123','George','Bushy', 'testpass', 2000, 'user'),
-('hen123','Henry','Thirdy', 'password', 2500, 'user');
+('mick123','Mickey','Jaggar', 'sarauer', 1000, 'player'),
+('don123','Donald', 'Trumper', '12345', 3000, 'player'),
+('geo123','George','Bushy', 'testpass', 2000, 'player'),
+('hen123','Henry','Thirdy', 'password', 2500, 'player');
 
 -- --------------------------------------------------------
 
