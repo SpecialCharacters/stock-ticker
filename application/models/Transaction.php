@@ -30,6 +30,7 @@ class Transaction extends MY_Model {
         $columns = array();
         $rows = array();
         $newRes = array();
+        $players = $this->players->getUsernames();
         $site = fopen($this->url, "r");
         if($site == FALSE) {
             echo "failed to open";
@@ -53,9 +54,11 @@ class Transaction extends MY_Model {
         
         for ($i = 0; $i < count($rows); $i ++) {
             if($rows[$i]["stock"] == $code) {
-                $tmpRes = array();
-                array_push($tmpRes, $rows[$i]["player"], $rows[$i]["player"], $rows[$i]["quantity"], $rows[$i]["trans"], $this->millisecondsToDatetime($rows[$i]["datetime"]));
-                array_push($newRes, $tmpRes);
+                if (array_key_exists($rows[$i]["player"], $players)) {
+                    $tmpRes = array();
+                    array_push($tmpRes, $rows[$i]["player"], $rows[$i]["player"], $rows[$i]["quantity"], $rows[$i]["trans"], $this->millisecondsToDatetime($rows[$i]["datetime"]));
+                    array_push($newRes, $tmpRes);
+                }
             }
         }
         return $newRes;
