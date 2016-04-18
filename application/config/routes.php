@@ -56,6 +56,9 @@ $route['profile'] = 'portfolio';
 
 $route['stock/(:any)'] = 'stock/index/$1';
 
+$route['admin/(:any)'] = 'administration/index/$1';
+$route['admin'] = 'administration';
+
 $route['login'] = 'login/loginAttempt';
 
 $route['404_override'] = '';
