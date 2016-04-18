@@ -15,7 +15,7 @@ class Portfolio extends Application {
 	parent::__construct();
 	$fullName = $this->players->getPlayerNamesByUsername($realName); //query players 
 	$this->data['contentTitle'] = $fullName[0] . ' ' . $fullName[1] . ' [' . $realName . ']'; //set page title
-	$this->restrict(array(ROLE_USER, ROLE_ADMIN));
+	$this->restrict(array(ROLE_PLAYER, ROLE_ADMIN));
     }
 
     /**
@@ -33,13 +33,13 @@ class Portfolio extends Application {
 
 	$this->data['links'] = $this->createNavigation(2); //create navigation bar - MY_CONTROLLER.php   
 	$this->data['pagebody'] = 'twotablepage'; //setting pagebody to be the two table view
-	$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
+	//$this->data['dropdowndata'] = $this->createDropDown($this->players->getPlayersNames(), $realName); //create drop down
 	//populating tables with data from query
 	$this->data['leftTableColumns'] = $this->createTableColumns(['Name', 'Code', 'Amount']);
-	$this->data['leftTableQuery'] = $this->parseQueryClickable($this->playerstocks->getPlayerStocksAndNames($realName), 'stock', 1);
+	//$this->data['leftTableQuery'] = $this->parseQueryClickable($this->playerstocks->getPlayerStocksAndNames($realName), 'stock', 1);
 
 	$this->data['rightTableColumns'] = $this->createTableColumns(['Stock', 'Amount', 'Type', 'Timestamp']);
-	$this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByUsername($realName), 'stock', 1);
+	//$this->data['rightTableQuery'] = $this->parseQueryClickable($this->transaction->getTransactionByUsername($realName), 'stock', 1);
 
 	$this->render();
     }

@@ -19,7 +19,8 @@ class Login extends Application {
      * @param type $username user input 
      * @param type $password user input
      */
-    public function loginAttempt() {        
+    public function loginAttempt() {
+	
         //if able to get username
         if (isset($_POST['username']) && isset($_POST['password'])) {
             //if user name and password are invalid
@@ -41,7 +42,7 @@ class Login extends Application {
      */
     public function queryLogin($username, $password) {
         //database query
-        $this -> db -> select('username, firstname, password');
+        $this -> db -> select('username, firstname, password,role');
         $this -> db -> from('players');
         $this -> db -> where('username', $username);
         $this -> db -> where('password', $password);
@@ -71,9 +72,11 @@ class Login extends Application {
             foreach($result as $row) {
                 $sess_array = array(
                     'username' => $row->username,
-                    'firstname' => $row->firstname
+                    'firstname' => $row->firstname,
+		    'userRole' => $row->role
                 );
             }
+	    
             $this->session->set_userdata('logged_in', $sess_array);
             
             redirect('/', 'refresh');//if logged in, refresh to welcome page
